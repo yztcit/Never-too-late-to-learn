@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Never too late to learn</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+    <!--learn contents overview-->
+    <!--编号用来启动activity 详见MainActivity中的onItemClick-->
+    <string name="learn_UI_base">0.基础UI学习<!--编号0--></string>
+    <string name="learn_component">1.四大组件学习<!--编号1--></string>
+    <string name="learn_layout">2.四大布局学习<!--编号2--></string><!--绝对布局已放弃-->
+    <string name="learn_interaction">3.友好交互学习<!--编号3--></string>
+    <string name="learn_data_storage">4.数据存储学习<!--编号4--></string>
+    <string name="learn_http">5.网络访问学习<!--编号5--></string>
+    <string name="learn_animation">6.动画学习<!--编号6--></string>
+    <string name="learn_draw_view">7.画图学习<!--编号7--></string>
+    <string name="learn_media_camera">8.多媒体与相机学习<!--编号8--></string>
+    <string name="learn_UI_advanced">9.高级UI学习<!--编号9--></string>
+    <string name="learn_style">10.样式开发学习<!--编号10--></string>
+    <string name="learn_threads">11.多线程与通信学习<!--编号11--></string>
+    <string name="learn_others">12.其他学习<!--编号12--></string>
+</resources>

@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_black</item>
+        <item name="colorPrimaryDark">@color/color_black</item>
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+
+    </style>
+
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+
+    </style>
+
+
+    <style name="CustomNoActionBarTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="drawerArrowStyle">@style/CustomNoActionBarTheme.drawerArrowStyle</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!--设置导航箭头的样式-->
+    <style name="CustomNoActionBarTheme.drawerArrowStyle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="android:color">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseTheme">
+        <!-- Customize your theme here. -->
+        <!--<item name="android:windowNoTitle">true</item>-->
+
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="actionBarStyle">@style/SelfActionBarStyle</item>-->
+    </style>
+
+    <style name="SelfActionBarStyle" parent="Theme.AppCompat">
+
+    </style>
+
+    <style name="TextColor">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>
