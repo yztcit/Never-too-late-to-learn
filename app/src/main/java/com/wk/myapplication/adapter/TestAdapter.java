@@ -1,4 +1,4 @@
-package com.wk.myapplication;
+package com.wk.myapplication.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
