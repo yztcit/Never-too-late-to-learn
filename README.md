@@ -1,2 +1,5 @@
 # Never-too-late-to-learn
-self learn from CSDN
+self learn from CSDN blog
+####如何自学Android, 教大家玩爆Android####
+https://blog.csdn.net/xiaole0313/article/details/51714223
+
