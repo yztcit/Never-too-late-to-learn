@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.wk.myapplication.R;
+import com.wk.myapplication.tool.LogUtils;
 
 /**
  * https://blog.csdn.net/xiaole0313/article/details/51714223
@@ -152,7 +153,8 @@ public class MainActivity extends AppCompatActivity {
                     startIntent.setAction(actionStr);
                     MainActivity.this.startActivity(startIntent);
                 }
-                Log.d(TAG, "onItemClick: " + "\natPosition: " + atPosition + "\nstrAtPosition: " + strAtPosition);
+//                Log.d(TAG, "onItemClick: " + "\natPosition: " + atPosition + "\nstrAtPosition: " + strAtPosition);
+                LogUtils.d(TAG,"onItemClick: " + "\natPosition: " + atPosition + "\nstrAtPosition: " + strAtPosition);
             }
         });
 
