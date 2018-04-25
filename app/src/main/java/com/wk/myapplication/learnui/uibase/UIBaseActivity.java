@@ -1,15 +1,15 @@
-package com.wk.myapplication.activity;
+package com.wk.myapplication.learnui.uibase;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.wk.myapplication.R;
 
-public class UIAdvancedActivity extends AppCompatActivity {
+public class UIBaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_uiadvanced);
+        setContentView(R.layout.activity_uibase);
     }
 }

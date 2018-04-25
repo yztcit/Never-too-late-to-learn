@@ -1,4 +1,4 @@
-package com.wk.myapplication.activity;
+package com.wk.myapplication.learndata;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -16,91 +16,91 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.UIBaseActivity">
+        <activity android:name=".learnui.uibase.UIBaseActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item0" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ComponentActivity">
+        <activity android:name=".learncomponent.ComponentActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item1" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LayoutActivity">
+        <activity android:name=".learnlayout.LayoutActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item2" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.InteractionActivity">
+        <activity android:name=".learninteraction.InteractionActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item3" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DataStorageActivity">
+        <activity android:name=".learndata.DataStorageActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item4" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HttpActivity">
+        <activity android:name=".learnhttp.HttpActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item5" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AnimationActivity">
+        <activity android:name=".learnanimation.AnimationActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item6" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DrawViewActivity">
+        <activity android:name=".learndrawview.DrawViewActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item7" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MediaActivity">
+        <activity android:name=".learnmedia.MediaActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item8" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UIAdvancedActivity">
+        <activity android:name=".learnui.uiadvance.UIAdvancedActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item9" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.StyleActivity">
+        <activity android:name=".learnstyle.StyleActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item10" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ThreadsActivity">
+        <activity android:name=".learnthreads.ThreadsActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item11" />
 
                 <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.OthersActivity">
+        <activity android:name=".learnothers.OthersActivity">
             <intent-filter>
                 <action android:name="com.wk.myapplication.item12" />
 

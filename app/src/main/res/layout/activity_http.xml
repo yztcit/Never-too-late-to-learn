@@ -8,6 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.wk.myapplication.activity.HttpActivity">
+    tools:context="com.wk.myapplication.learnhttp.HttpActivity">
 
 </RelativeLayout>
