@@ -18,4 +18,14 @@
     <string name="learn_style">10.样式开发学习<!--编号10--></string>
     <string name="learn_threads">11.多线程与通信学习<!--编号11--></string>
     <string name="learn_others">12.其他学习<!--编号12--></string>
+
+    <!--编号4:data storage-->
+    <string name="data_storage_images">Images</string>
+    <string name="data_storage_audios">Audios</string>
+    <string name="data_storage_videos">Videos</string>
+    <string name="data_storage_documents">Documents</string>
+    <string name="data_storage_archives">Archives</string>
+    <string name="data_storage_apps">Apps</string>
+    <string name="data_storage_downloads">Downloads</string>
+    <string name="data_storage_more">More</string>
 </resources>

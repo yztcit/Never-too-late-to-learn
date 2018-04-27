@@ -109,7 +109,22 @@
             </intent-filter>
         </activity>
 
-
+        <activity android:name=".learndata.activity.CategoryImagesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".learndata.activity.CategoryAudiosActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".learndata.activity.CategoryVideosActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".learndata.activity.CategoryDocumentsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".learndata.activity.CategoryArchivesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".learndata.activity.CategoryAppsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".learndata.activity.CategoryDownloadsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".learndata.activity.CategoryMoreActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -10,12 +10,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.FileUtils;
 import com.wk.myapplication.R;
+import com.wk.myapplication.learndata.activity.CategoryAppsActivity;
+import com.wk.myapplication.learndata.activity.CategoryArchivesActivity;
+import com.wk.myapplication.learndata.activity.CategoryAudiosActivity;
+import com.wk.myapplication.learndata.activity.CategoryDocumentsActivity;
+import com.wk.myapplication.learndata.activity.CategoryDownloadsActivity;
+import com.wk.myapplication.learndata.activity.CategoryImagesActivity;
+import com.wk.myapplication.learndata.activity.CategoryMoreActivity;
+import com.wk.myapplication.learndata.activity.CategoryVideosActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,11 +42,20 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.DIRECTORY_PODCASTS;
 import static android.os.Environment.DIRECTORY_RINGTONES;
 
-public class DataStorageActivity extends AppCompatActivity {
+public class DataStorageActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "DataStorageActivity";
     private ListView mLVDataFiles;
     private TextView mTVHintTitle;
+
+    private Button mBtnImages;
+    private Button mBtnAudios;
+    private Button mBtnVideos;
+    private Button mBtnDocuments;
+    private Button mBtnArchives;
+    private Button mBtnApps;
+    private Button mBtnDownloads;
+    private Button mBtnMore;
 
     private Context mContext;
     private ArrayList<String> mFilesPath = new ArrayList<>();//adapter data,only 1 sub file path;
@@ -93,9 +111,50 @@ public class DataStorageActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_data_images:
+                CategoryImagesActivity.actionStart(mContext);
+                break;
+            case R.id.btn_data_audios:
+                CategoryAudiosActivity.actionStart(mContext);
+                break;
+            case R.id.btn_data_videos:
+                CategoryVideosActivity.actionStart(mContext);
+                break;
+            case R.id.btn_data_documents:
+                CategoryDocumentsActivity.actionStart(mContext);
+                break;
+            case R.id.btn_data_archives:
+                CategoryArchivesActivity.actionStart(mContext);
+                break;
+            case R.id.btn_data_apps:
+                CategoryAppsActivity.actionStart(mContext);
+                break;
+            case R.id.btn_data_downloads:
+                CategoryDownloadsActivity.actionStart(mContext);
+                break;
+            case R.id.btn_data_more:
+                CategoryMoreActivity.actionStart(mContext);
+                break;
+            default:
+                break;
+        }
+    }
+
     private void initView() {
         mTVHintTitle = (TextView) findViewById(R.id.tv_data_storage);
         mLVDataFiles = (ListView) findViewById(R.id.lv_data_file);
+
+        mBtnImages = (Button) findViewById(R.id.btn_data_images);
+        mBtnAudios = (Button) findViewById(R.id.btn_data_audios);
+        mBtnVideos = (Button) findViewById(R.id.btn_data_videos);
+        mBtnDocuments = (Button) findViewById(R.id.btn_data_documents);
+        mBtnArchives = (Button) findViewById(R.id.btn_data_archives);
+        mBtnApps = (Button) findViewById(R.id.btn_data_apps);
+        mBtnDownloads = (Button) findViewById(R.id.btn_data_downloads);
+        mBtnMore = (Button) findViewById(R.id.btn_data_more);
     }
 
     private void initData() {
