@@ -25,29 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3dc3356-4fb6-4c0c-a14e-04638d878797" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/rc_ad_list_audio_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/rc_ad_list_file_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/rc_ad_list_folder_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/rc_ad_list_other_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/rc_ad_list_video_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/adapter/ImageAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/bean/FileInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/bean/FolderInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/utils/FileUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/utils/ImageWorker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/utils/LoadLoacalPhotoCursorTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/utils/LocalMediaLoader.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_data_storage.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_uiadvanced.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_uibase.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/activity/CategoryImagesActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/activity/CategoryImagesActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/DataStorageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/activity/DataStorageActivity.java" />
     </list>
     <ignored path="Never-too-late-to-learn.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,10 +58,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CategoryImagesActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CategoryImagesActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/activity/CategoryImagesActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
+            <state relative-caret-position="1191">
               <caret line="161" column="38" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
               <folding>
                 <element signature="e#1680#1686#0" expanded="true" />
@@ -103,7 +81,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoadLoacalPhotoCursorTask.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoadLoacalPhotoCursorTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/utils/LoadLoacalPhotoCursorTask.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1144">
@@ -114,16 +92,6 @@
                 <element signature="e#2974#2975#0" expanded="true" />
                 <element signature="e#3027#3028#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MediaStore.java" pinned="false" current-in-tab="false">
-        <entry file="file://D:/sdk/sources/android-25/android/provider/MediaStore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="856" column="31" selection-start-line="856" selection-start-column="31" selection-end-line="856" selection-end-column="31" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -2733,11 +2701,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524831693094</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add load local images in NO.4 data storage">
+      <created>1524920787283</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1524920787283</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2780,7 +2755,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add some item in NO.4 data storage" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some item in NO.4 data storage" />
+    <MESSAGE value="add load local images in NO.4 data storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="add load local images in NO.4 data storage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2789,11 +2765,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="android-dummy://F:/GitHub/Never-too-late-to-learn/app/Translations Editor">
-      <provider selected="true" editor-type-id="string-resource-editor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -3254,27 +3225,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/activity/CategoryImagesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="161" column="38" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
-          <folding>
-            <element signature="e#1680#1686#0" expanded="true" />
-            <element signature="e#1756#1767#0" expanded="true" />
-            <element signature="class#SelectedTreeMap#0;class#CategoryImagesActivity#0" expanded="false" />
-            <element signature="e#2053#2054#0" expanded="true" />
-            <element signature="e#2091#2092#0" expanded="true" />
-            <element signature="e#2153#2154#0" expanded="true" />
-            <element signature="e#2199#2200#0" expanded="true" />
-            <element signature="e#3552#3599#0" expanded="false" />
-            <element signature="e#5511#6109#0" expanded="true" />
-            <element signature="e#6108#6109#0" expanded="true" />
-            <element signature="e#9206#9207#0" expanded="true" />
-            <element signature="e#9260#9261#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/sdk/sources/android-25/android/provider/MediaStore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -3292,6 +3242,35 @@
             <element signature="e#748#754#0" expanded="true" />
             <element signature="e#2974#2975#0" expanded="true" />
             <element signature="e#3027#3028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1254">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wk/myapplication/learndata/activity/CategoryImagesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1191">
+          <caret line="161" column="38" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
+          <folding>
+            <element signature="e#1680#1686#0" expanded="true" />
+            <element signature="e#1756#1767#0" expanded="true" />
+            <element signature="class#SelectedTreeMap#0;class#CategoryImagesActivity#0" expanded="false" />
+            <element signature="e#2053#2054#0" expanded="true" />
+            <element signature="e#2091#2092#0" expanded="true" />
+            <element signature="e#2153#2154#0" expanded="true" />
+            <element signature="e#2199#2200#0" expanded="true" />
+            <element signature="e#3552#3599#0" expanded="false" />
+            <element signature="e#5511#6109#0" expanded="true" />
+            <element signature="e#6108#6109#0" expanded="true" />
+            <element signature="e#9206#9207#0" expanded="true" />
+            <element signature="e#9260#9261#0" expanded="true" />
           </folding>
         </state>
       </provider>
