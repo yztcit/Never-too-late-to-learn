@@ -1,12 +1,12 @@
-package com.wk.myapplication.learndata;
+package com.wk.myapplication.learndata.activity;
 
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.storage.StorageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,16 +17,12 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.util.FileUtils;
 import com.wk.myapplication.R;
-import com.wk.myapplication.learndata.activity.CategoryAppsActivity;
-import com.wk.myapplication.learndata.activity.CategoryArchivesActivity;
-import com.wk.myapplication.learndata.activity.CategoryAudiosActivity;
-import com.wk.myapplication.learndata.activity.CategoryDocumentsActivity;
-import com.wk.myapplication.learndata.activity.CategoryDownloadsActivity;
-import com.wk.myapplication.learndata.activity.CategoryImagesActivity;
-import com.wk.myapplication.learndata.activity.CategoryMoreActivity;
-import com.wk.myapplication.learndata.activity.CategoryVideosActivity;
+import com.wk.myapplication.learndata.utils.FileUtil;
 
 import java.io.File;
+import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -42,7 +38,7 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.DIRECTORY_PODCASTS;
 import static android.os.Environment.DIRECTORY_RINGTONES;
 
-public class DataStorageActivity extends AppCompatActivity implements View.OnClickListener{
+public class DataStorageActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "DataStorageActivity";
     private ListView mLVDataFiles;
@@ -59,7 +55,7 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
 
     private Context mContext;
     private ArrayList<String> mFilesPath = new ArrayList<>();//adapter data,only 1 sub file path;
-    private ArrayList<File> mFiles = new ArrayList<>();
+    //    private ArrayList<File> mFiles = new ArrayList<>();
     private Stack<ArrayList<String>> mFilePathStack;//record file path;
     private Stack<String> mFileDirStack;//record&show file path at title;
     private ArrayAdapter<String> mFilesAdapter;
@@ -93,7 +89,7 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
         super.onDestroy();
         mItemInner = 0;
         mFilesPath = null;
-        mFiles = null;
+//        mFiles = null;
         mFilePathStack = null;
     }
 
@@ -159,6 +155,24 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
 
     private void initData() {
         mContext = this;
+        aboutFileDir();
+
+        initButtonClickListener();
+
+    }
+
+    private void initButtonClickListener() {
+        mBtnImages.setOnClickListener(this);
+        mBtnAudios.setOnClickListener(this);
+        mBtnVideos.setOnClickListener(this);
+        mBtnDocuments.setOnClickListener(this);
+        mBtnArchives.setOnClickListener(this);
+        mBtnApps.setOnClickListener(this);
+        mBtnDownloads.setOnClickListener(this);
+        mBtnMore.setOnClickListener(this);
+    }
+
+    private void aboutFileDir() {
         mFilePathStack = new Stack<>();//file path collection stack;
         mFileDirStack = new Stack<>();//title stack;
         //记录当前title,防止pop重复;
@@ -171,12 +185,13 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //record current position;
+                // FIXME: 2018/4/28 应该设置多维数组记录不同层级滑动的位置
                 scrollPosition = mLVDataFiles.getFirstVisiblePosition();
+
                 mTitle = (String) parent.getItemAtPosition(position);
                 String filePath = mFilesPath.get(position);
                 if (TextUtils.equals(mTitle, filePath)) {
-                    File filePosition = mFiles.get(position);
-                    boolean isDir = FileUtils.isDir(filePosition);
+                    boolean isDir = FileUtils.isDir(filePath);
                     if (isDir) {
                         mItemInner++;
                         mFileDirStack.push(mTitle + "/");
@@ -187,13 +202,15 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
                         mFilePathStack.push(tempFilesPath);
 
                         //clear&reset ArrayList mFilesPath and refresh adapter;
-                        List<File> files = FileUtils.listFilesInDir(filePosition);
+                        List<File> files = FileUtils.listFilesInDir(filePath);
                         mFilesPath.clear();
                         for (File file : files) {
                             mFilesPath.add(file.toString());
                         }
-                        mFilesAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(mContext, "No more files,for this is a file.", Toast.LENGTH_SHORT).show();
                     }
+                    mFilesAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -207,41 +224,50 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
          * internal
          */
         mFilesPath.add(Environment.getDataDirectory().toString());
-        mFiles.add(Environment.getDataDirectory());
+//        mFiles.add(Environment.getDataDirectory());
         mFilesPath.add(Environment.getDownloadCacheDirectory().toString());
-        mFiles.add(Environment.getDownloadCacheDirectory());
+//        mFiles.add(Environment.getDownloadCacheDirectory());
         mFilesPath.add(Environment.getRootDirectory().toString());
-        mFiles.add(Environment.getRootDirectory());
+//        mFiles.add(Environment.getRootDirectory());
         /**
          * external
          */
         for (String str : STANDARD_DIRECTORIES) {//9 public external dir
             mFilesPath.add(Environment.getExternalStoragePublicDirectory(str).toString());
-            mFiles.add(Environment.getExternalStoragePublicDirectory(str));
+//            mFiles.add(Environment.getExternalStoragePublicDirectory(str));
         }
         /**
          * private---ues Context to get
          */
         if (mContext.getExternalCacheDir() != null) {
             mFilesPath.add(mContext.getExternalCacheDir().toString());
-            mFiles.add(mContext.getExternalCacheDir());
+//            mFiles.add(mContext.getExternalCacheDir());
         }
         for (String str : STANDARD_DIRECTORIES) {//9 public external dir
             File externalFilesDir = mContext.getExternalFilesDir(str);
             if (externalFilesDir != null) {
                 mFilesPath.add(externalFilesDir.toString());
-                mFiles.add(externalFilesDir);
+//                mFiles.add(externalFilesDir);
             }
         }
         mFilesPath.add(mContext.getCacheDir().toString());
-        mFiles.add(mContext.getCacheDir());
+//        mFiles.add(mContext.getCacheDir());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//21 OS version 5.0
             mFilesPath.add(mContext.getCodeCacheDir().toString());
-            mFiles.add(mContext.getCodeCacheDir());
+//            mFiles.add(mContext.getCodeCacheDir());
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//24 OS version 7.0
             mFilesPath.add(mContext.getDataDir().toString());
-            mFiles.add(mContext.getDataDir());
+//            mFiles.add(mContext.getDataDir());
+        }
+        /**
+         * SD card
+         */
+        String extendedMemoryPath = getExtendedMemoryPath(mContext);
+        if (extendedMemoryPath == null) {
+            mFilesPath.add("/storage/exSDCard---null");
+        } else {
+            mFilesPath.add(extendedMemoryPath);
         }
 
         mFilesAdapter = new ArrayAdapter<String>(
@@ -251,6 +277,40 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
 
     private String getDirTitle() {
         mTitle = mFileDirStack.pop();
+
         return mTitle = mFileDirStack.peek();
+    }
+
+    /**
+     * 反射方式获取拓展卡路径
+     * @param mContext 上下文对象
+     * @return 拓展卡路径
+     */
+    private String getExtendedMemoryPath(Context mContext) {
+        try {
+            StorageManager mStorageManager = (StorageManager) mContext.getSystemService(Context.STORAGE_SERVICE);
+            Class<?> storageVolumeClazz = null;
+            storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
+            if (storageVolumeClazz != null) {
+
+                Method getVolumeList = mStorageManager.getClass().getMethod("getVolumeList");
+                Method getPath = storageVolumeClazz.getMethod("getPath");
+                Method isRemovable = storageVolumeClazz.getMethod("isRemovable");
+                Object result = getVolumeList.invoke(mStorageManager);
+                final int length = Array.getLength(result);
+                for (int i = 0; i < length; i++) {
+                    Object storageVolumeElement = Array.get(result, i);
+                    String path = (String) getPath.invoke(storageVolumeElement);
+                    boolean removable = (Boolean) isRemovable.invoke(storageVolumeElement);
+                    if (removable) {
+                        return path;
+                    }
+                }
+            }
+        } catch (ClassNotFoundException | InvocationTargetException |
+                NoSuchMethodException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
