@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_category_images"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_images_path"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/data_storage_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+    <!--<ExpandableListView-->
+        <!--android:id="@+id/expand_lv_data"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"/>-->
+    <GridView
+        android:id="@+id/gv_data_images"
+        android:numColumns="4"
+        android:gravity="center"
+        android:columnWidth="@dimen/iv_image_item_w_h"
+        android:verticalSpacing="2dp"
+        android:horizontalSpacing="2dp"
+        android:stretchMode="columnWidth"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.3.1_c22791eca4cca8717e69100283c79ca26f6afd47\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.3.1_4c6f4b9c480b826e942aa1778b06c1c034d73f62\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\transition\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.3.1_9e9fe4a12a78ba51590f7a31900db24d47c9461d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\design\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.3.1_47c2e7803497f235d8d2604d2c955656c7c7f826\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.blankj\utilcode\1.14.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d68a846f26d85ab91d49ac9689a9c3257f3a7148">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.blankj-utilcode-1.14.0_c29ec647b16c4d61f797e383ef3a7173239a5bbf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\org.greenrobot\eventbus\3.0.0\ddd99896e9569eaababbe81b35d80e1b91c4ad85\eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\eventbus-3.0.0_338198e230e883acd6c9c82ca46ba5fc3096755c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.3.1_833d49c8c0513b56ff462238a3e2c037df727e22\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.3.1_e2934acd5731ad28850eda1f19657579edf1ae14\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.3.1_124409380fd2f2b6e08f2914fcce2e95ea64b41b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.3.1_d55bc19b0ac451caf9253f4bdc9d71f9a22e942a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fe4aeb433a9c22d8b1799f0a06284e4048c53128">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_6afaa6f6758e70228662a1e7d01e39e5359cfe86\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.3.1_adce82f6267ad4d94c51ba04d865949c08353c7f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_cfa7e4f6acdbb5a37cc4fde833ccf160c11355f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\org.greenrobot\greendao-api\3.2.0\c6d610abe1d75d758431c9234917a349abc0a0ac\greendao-api-3.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c6d610abe1d75d758431c9234917a349abc0a0ac">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\greendao-api-3.2.0_bcb0f0d31e328b5ad99ce3d5063ea26fb25ba869\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b8c75c2b58276fa136cee6c8c89bee8b555cce21">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a27afc6ff7b84ef57ac794c00232df9f6b93ec35\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.github.CymChad\BaseRecyclerViewAdapterHelper\2.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bdb93a350e5fd23c514238a66dbd18b801d50837">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.CymChad-BaseRecyclerViewAdapterHelper-2.8.0_15b6914cbb78f0a1d3bfb2a25c817be5f121c558\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\org.greenrobot\greendao\3.2.0\e70040568b2929b8e5869ad1ffca8e4386dc53bc\greendao-3.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e70040568b2929b8e5869ad1ffca8e4386dc53bc">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\greendao-3.2.0_a584c16f448569ed72551d6057e0354366b3f6ad\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.3.1_a7653d9b2078985e9c172c6d557be97f708ea25a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.3.1_5b2b74fc2975f2b743fe0cdf8fc9b69b1b8c3e99\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="F:\GitHub\Never-too-late-to-learn\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.3.1_02646594d1bffad58f30c245e58bf2498b1cb3f4\classes.dex" />
+    </item>
+
+</items>
