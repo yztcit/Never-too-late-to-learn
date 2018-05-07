@@ -11,11 +11,11 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
+import android.support.v4.util.LruCache;
 import android.widget.ImageView;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
 
 /**
  * 手机本地图片异步加载处理类
@@ -31,11 +31,13 @@ public class ImageWorker {
     private boolean mPauseWork = false;//加载图片线程是否挂起
     private final Object mPauseWorkLock = new Object();//锁对象，这个锁对象是为了判断是否进行图片的加载
 
-    protected final Resources mResources;
+    private final Resources mResources;
     private final ContentResolver mContentResolver;//内容解析者
     private final BitmapFactory.Options mOptions;
 
-    private final HashMap<Long, SoftReference<BitmapDrawable>> bitmapCache = new HashMap<Long, SoftReference<BitmapDrawable>>();//用于缓存图片，每一个缓存的图片对应一个Long类型的id值，SoftReference对应该图片的软引用
+//    private final HashMap<Long, SoftReference<BitmapDrawable>> bitmapCache = new HashMap<Long, SoftReference<BitmapDrawable>>();//用于缓存图片，每一个缓存的图片对应一个Long类型的id值，SoftReference对应该图片的软引用
+    //图片缓存技术的核心类，用于缓存所有下载好的图片，在程序内存达到设定值时会将最少最近使用的图片移除掉。
+    private LruCache<Long, BitmapDrawable> mMemoryCache;
 
     private Bitmap mLoadBitmap;//GridView中默认的背景图片
     //构造器
@@ -44,6 +46,17 @@ public class ImageWorker {
         this.mContentResolver = context.getContentResolver();
         mOptions = new BitmapFactory.Options();
         mOptions.inSampleSize = 3;//缩放图片为原来的1/9。一般应用中加载图片都会进行图片的缩放，防止内存溢出的问题。这部分的内容有关Bitmap，请参考我的博文(http://blog.csdn.net/u010156024/article/details/44103557)
+
+        // 获取应用程序最大可用内存
+        int maxMemory = (int) Runtime.getRuntime().maxMemory();
+        int cacheSize = maxMemory / 8;
+        mMemoryCache = new LruCache<Long,BitmapDrawable>(cacheSize){
+
+            @Override
+            protected int sizeOf(Long key, BitmapDrawable value) {
+                return value.getBitmap().getByteCount();
+            }
+        };
     }
 
     /**
@@ -55,8 +68,11 @@ public class ImageWorker {
         BitmapDrawable bitmapDrawable = null;
         //先从缓存中加载图片，如果缓存中有，加载图片即可。
         //如果缓存中没有，首先判断当前任务是否暂停，没有暂停则使用loadBitmapTask异步任务线程加载图片
-        if (bitmapCache.containsKey(origId)) {
-            bitmapDrawable = bitmapCache.get(origId).get();
+//        if (bitmapCache.containsKey(origId)) {
+//            bitmapDrawable = bitmapCache.get(origId).get();
+//        }
+        if (getBitmapFromMemoryCache(origId) != null) {
+            bitmapDrawable = mMemoryCache.get(origId);
         }
         if (bitmapDrawable != null) {
             imageView.setImageDrawable(bitmapDrawable);
@@ -117,13 +133,38 @@ public class ImageWorker {
     }
 
     /**
+     * 将一张图片存储到LruCache中。
+     *
+     * @param key
+     *            LruCache的键，这里传入图片的URL地址。
+     * @param drawable
+     *            LruCache的值，这里传入从网络上下载的BitmapDrawable对象。
+     */
+    private void addBitmapToMemoryCache(long key, BitmapDrawable drawable) {
+        if (getBitmapFromMemoryCache(key) == null) {
+            mMemoryCache.put(key, drawable);
+        }
+    }
+
+    /**
+     * 从LruCache中获取一张图片，如果不存在就返回null。
+     *
+     * @param key
+     *            LruCache的键，这里传入图片的URL地址。
+     * @return 对应传入键的BitmapDrawable对象，或者null。
+     */
+    private BitmapDrawable getBitmapFromMemoryCache(long key) {
+        return mMemoryCache.get(key);
+    }
+
+    /**
      * 图片异步加载线程类-任务线程
      */
     private class LoadBitmapTask extends AsyncTask<Long, Void, BitmapDrawable> {
         private long origId;
         private WeakReference<ImageView> imageViewReference;//指向Imageview的弱引用，把图片缓存在HashMap<Long, SoftReference<BitmapDrawable>> bitmapCache中。
 
-        public LoadBitmapTask(ImageView imageView) {
+        LoadBitmapTask(ImageView imageView) {
             imageViewReference = new WeakReference<ImageView>(imageView);
         }
 
@@ -139,12 +180,12 @@ public class ImageWorker {
                     try {
                         mPauseWorkLock.wait();
                     } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
             }
 
-            if (bitmapCache != null && !isCancelled() && getAttachedImageView() != null
-                    && !mExitTasksEarly) {
+            if (!isCancelled() && getAttachedImageView() != null && !mExitTasksEarly) {
                 //这里是根据图片的id值查询手机本地的图片，获取图片的缩略图，MICRO_KIND 代表96*96大小的图片
                 bitmap = MediaStore.Images.Thumbnails.getThumbnail(
                         mContentResolver,
@@ -156,7 +197,8 @@ public class ImageWorker {
 
             if (bitmap != null) {
                 drawable = new BitmapDrawable(mResources, bitmap);
-                bitmapCache.put(origId,new SoftReference<BitmapDrawable>(drawable));
+//                bitmapCache.put(origId,new SoftReference<BitmapDrawable>(drawable));
+                addBitmapToMemoryCache(origId,drawable);
             }
             return drawable;
         }
@@ -202,12 +244,12 @@ public class ImageWorker {
      */
     private static class AsyncDrawable extends BitmapDrawable {
         private final WeakReference<LoadBitmapTask> bitmapWorkerTaskReference;//虚引用
-        public AsyncDrawable(Resources res, Bitmap bitmap, LoadBitmapTask bitmapWorkerTask) {
+        AsyncDrawable(Resources res, Bitmap bitmap, LoadBitmapTask bitmapWorkerTask) {
             super(res, bitmap);
             bitmapWorkerTaskReference =
                     new WeakReference<LoadBitmapTask>(bitmapWorkerTask);
         }
-        public LoadBitmapTask getLoadBitmapTask() {
+        LoadBitmapTask getLoadBitmapTask() {
             return bitmapWorkerTaskReference.get();
         }
     }
@@ -216,7 +258,7 @@ public class ImageWorker {
      * 返回图片资源内存放的异步线程，如果存在，则返回，不存在，返回null。
      *
      * @param imageView 当前存放异步资源图片的ImageView
-     * @return
+     * @return LoadBitmapTask 图片异步加载线程类
      */
     private static LoadBitmapTask getBitmapWorkerTask(ImageView imageView) {
         if (imageView != null) {
@@ -231,7 +273,7 @@ public class ImageWorker {
 
     /**
      * 设置异步任务是否暂停，false为启动，true为暂停。
-     * @param pauseWork
+     * @param pauseWork pause flag
      */
     public void setPauseWork(boolean pauseWork) {
         synchronized (mPauseWorkLock) {
@@ -244,7 +286,7 @@ public class ImageWorker {
 
     /**
      * 退出线程
-     * @param exitTasksEarly
+     * @param exitTasksEarly exit flag
      */
     public void setExitTasksEarly(boolean exitTasksEarly) {
         mExitTasksEarly = exitTasksEarly;

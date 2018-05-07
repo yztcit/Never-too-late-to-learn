@@ -26,6 +26,7 @@ import com.wk.myapplication.learndata.utils.LocalMediaLoader;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -125,7 +126,7 @@ public class CategoryImagesActivity extends FragmentActivity {
         if (bundle != null) {
             clazz = (Class) bundle.get(INTENT_CLAZZ);
         }else {
-            Log.i(CategoryImagesActivity.class.getSimpleName(), "bundle == null");
+            Log.i(TAG, "bundle == null");
         }
         imageWorker = new ImageWorker(this);
         //这个bitmap是GridView中每一个item默认时的图片
@@ -166,11 +167,14 @@ public class CategoryImagesActivity extends FragmentActivity {
          */
         cursorTask.setOnLoadPhotoCursor(new LoadLoacalPhotoCursorTask.OnLoadPhotoCursor() {
             @Override
-            public void onLoadPhotoSursorResult(ArrayList<Uri> uriArray, ArrayList<Long> origIdArray) {
+            public void onLoadPhotoCursorResult(HashMap<String, List<Long>> groupMap,
+                                                ArrayList<Uri> uriArray,
+                                                ArrayList<Long> origIdArray) {
                 if (isNotNull(uriArray) && isNotNull(origIdArray)) {
                     CategoryImagesActivity.this.uriArray = uriArray;
                     CategoryImagesActivity.this.origIdArray = origIdArray;
 //                    loadView.setVisibility(View.GONE);
+                    Log.i(TAG, "onLoadPhotoCursorResult: \n" + groupMap.size() + "\n" + groupMap.toString());
                     adapter.setOrigIdArray(origIdArray);
                     adapter.notifyDataSetChanged();
                 }

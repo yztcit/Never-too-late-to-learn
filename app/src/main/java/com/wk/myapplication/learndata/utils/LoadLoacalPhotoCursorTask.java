@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Chen on 2018/4/28.
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 
 public class LoadLoacalPhotoCursorTask extends AsyncTask<Object, Object, Object> {
     private Context mContext;
+    //分类并将结果存储到mGroupMap（Key是文件夹名，Value是文件夹中的图片路径orgId的List）中
+    private HashMap<String, List<Long>> mGroupMap = new HashMap<>();
     private final ContentResolver mContentResolver;
     private boolean mExitTasksEarly = false;//退出任务线程的标志位
     private OnLoadPhotoCursor onLoadPhotoCursor;//定义回调接口，获取解析到的数据
@@ -32,9 +36,11 @@ public class LoadLoacalPhotoCursorTask extends AsyncTask<Object, Object, Object>
     @Override
     protected Object doInBackground(Object... params) {
         String[] projection = {
-                MediaStore.Images.Media._ID
+                MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME
         };
-        Uri ext_uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        Uri ex_uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        Uri in_uri = MediaStore.Images.Media.INTERNAL_CONTENT_URI;
         String where = MediaStore.Images.Media.SIZE + ">=?";
         /**
          * 这个查询操作完成图片大小大于100K的图片的ID查询。
@@ -46,28 +52,36 @@ public class LoadLoacalPhotoCursorTask extends AsyncTask<Object, Object, Object>
          */
         Cursor c = MediaStore.Images.Media.query(
                 mContentResolver,
-                ext_uri,
+                ex_uri,
                 projection,
-                where,
-                new String[]{100 * 1024 + ""},
-                MediaStore.Images.Media.DATE_ADDED + " desc");
+                /*where*/null,
+                /*new String[]{100 * 1024 + ""}*/null,
+                MediaStore.Images.Media.DATE_TAKEN + " desc");
 
         int columnIndex = c.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+        int bucketNameIndex = c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
 
         int i = 0;
         while (c.moveToNext() && i < c.getCount() && !mExitTasksEarly) {   //移到指定的位置，遍历数据库
             long origId = c.getLong(columnIndex);
-            uriArray.add(
-                    Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                            origId + "")
-            );
+            String bucketName = c.getString(bucketNameIndex);
+            uriArray.add(Uri.withAppendedPath(ex_uri, origId + ""));
 
             origIdArray.add(origId);
+            //根据父路径名将图片放入到mGruopMap中
+            if (!mGroupMap.containsKey(bucketName)) {
+                List<Long> childList = new ArrayList<>();
+                childList.add(origId);
+                mGroupMap.put(bucketName, childList);
+            } else {
+                mGroupMap.get(bucketName).add(origId);
+            }
             c.moveToPosition(i);
             i++;
         }
         c.close();//关闭数据库
         if (mExitTasksEarly) {
+            mGroupMap = new HashMap<>();
             uriArray = new ArrayList<Uri>();
             origIdArray = new ArrayList<Long>();
         }
@@ -79,7 +93,7 @@ public class LoadLoacalPhotoCursorTask extends AsyncTask<Object, Object, Object>
         if (onLoadPhotoCursor != null && !mExitTasksEarly) {
             /**
              * 查询完成之后，设置回调接口中的数据，把数据传递到Activity中
-             */onLoadPhotoCursor.onLoadPhotoSursorResult(uriArray, origIdArray);
+             */onLoadPhotoCursor.onLoadPhotoCursorResult(mGroupMap,uriArray, origIdArray);
         }
     }
 
@@ -98,6 +112,6 @@ public class LoadLoacalPhotoCursorTask extends AsyncTask<Object, Object, Object>
     }
 
     public interface OnLoadPhotoCursor {
-        public void onLoadPhotoSursorResult(ArrayList<Uri> uriArray, ArrayList<Long> origIdArray);
+        void onLoadPhotoCursorResult(HashMap<String, List<Long>> groupMap, ArrayList<Uri> uriArray, ArrayList<Long> origIdArray);
     }
 }
