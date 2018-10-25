@@ -25,31 +25,31 @@
 
 ### [1-3 drawText() 文字绘制](https://hencoder.com/ui-1-3/)  
 
-#### 1. `canvas` 文字绘制  
-##### 1.1. `drawText()` 绘制单行文本  
-##### 1.2. `drawTextRun()` 针对一些特殊文字习惯  
-##### 1.3. `drawTextOnPath()` 根据指定 Path 绘制文本  
-##### 1.4. `StaticLayout` 绘制简单多行文本  
-#### 2. `paint` 对文字绘制的辅助  
-##### 2.1. 设置文字显示类  
-###### 2.1.1. `setTextSize()` 设置文字大小  
-###### 2.1.2. `setTypeFace()` 设置字体  
-###### 2.1.3. `setFakeBoldText()` 伪粗体 （因为它并不是通过选用更高 weight 的字体让文字变粗，而是通过程序在运行时把文字给「描粗」了）  
-###### 2.1.4. `setStrikeThruText()` 是否加删除线  
-###### 2.1.5. `setUnderlineText()` 是否加下划线  
-###### 2.1.6. `setTextSkewX()` 设置文字倾斜度  
-###### 2.1.7. `setTextScale()` 设置文字横向缩放，即文字变胖或者变瘦  
-###### 2.1.8. `setLetterSpacing()` 设置字符间距  
-###### 2.1.9. `setFontFeatureSettings()` 用CSS的 font-feature-settings 方式设置文字样式 文档[这里][font-feature-settings]  
-###### 2.1.10. `setTextAlign()` 设置文字对齐方式  
-###### 2.1.11. `setTextLocale()` 设置地域  
-###### 2.1.12. `setTextHinting()` 是否启动文字微调（随着手机屏幕像素密度提高，几乎用不上了）  
-###### 2.1.13. `setElegantTextHeight()` 针对特殊的文字，让「大高个」字体优雅的显示  
-###### 2.1.14. `setSubpixelText()` 是否开启次像素级的抗锯齿（ sub-pixel anti-aliasing ）类似setTextHinting，基本没必要使用  
-###### 2.1.15. `setLinearText()` 原文 `Helper for setFlags(), setting or clearing the LINEARTEXTFLAG bit`  
-##### 2.2. 测量文字尺寸类  
-###### 2.2.1. `float getFontSpacing()` 获取推荐的行距，即推荐的两行文字的 baseline 的距离  
-###### 2.2.2. `FontMetircs getFontMetrics()` 获取 Paint 的 FontMetrics  
+### 1. `canvas` 文字绘制  
+#### 1.1. `drawText()` 绘制单行文本  
+#### 1.2. `drawTextRun()` 针对一些特殊文字习惯  
+#### 1.3. `drawTextOnPath()` 根据指定 Path 绘制文本  
+#### 1.4. `StaticLayout` 绘制简单多行文本  
+### 2. `paint` 对文字绘制的辅助  
+#### 2.1. 设置文字显示类  
+##### 2.1.1. `setTextSize()` 设置文字大小  
+##### 2.1.2. `setTypeFace()` 设置字体  
+##### 2.1.3. `setFakeBoldText()` 伪粗体 （因为它并不是通过选用更高 weight 的字体让文字变粗，而是通过程序在运行时把文字给「描粗」了）  
+##### 2.1.4. `setStrikeThruText()` 是否加删除线  
+##### 2.1.5. `setUnderlineText()` 是否加下划线  
+##### 2.1.6. `setTextSkewX()` 设置文字倾斜度  
+##### 2.1.7. `setTextScale()` 设置文字横向缩放，即文字变胖或者变瘦  
+##### 2.1.8. `setLetterSpacing()` 设置字符间距  
+##### 2.1.9. `setFontFeatureSettings()` 用CSS的 font-feature-settings 方式设置文字样式 文档[这里][font-feature-settings]  
+##### 2.1.10. `setTextAlign()` 设置文字对齐方式  
+##### 2.1.11. `setTextLocale()` 设置地域  
+##### 2.1.12. `setTextHinting()` 是否启动文字微调（随着手机屏幕像素密度提高，几乎用不上了）  
+##### 2.1.13. `setElegantTextHeight()` 针对特殊的文字，让「大高个」字体优雅的显示  
+##### 2.1.14. `setSubpixelText()` 是否开启次像素级的抗锯齿（ sub-pixel anti-aliasing ）类似setTextHinting，基本没必要使用  
+##### 2.1.15. `setLinearText()` 原文 `Helper for setFlags(), setting or clearing the LINEARTEXTFLAG bit`  
+#### 2.2. 测量文字尺寸类  
+##### 2.2.1. `float getFontSpacing()` 获取推荐的行距，即推荐的两行文字的 baseline 的距离  
+##### 2.2.2. `FontMetircs getFontMetrics()` 获取 Paint 的 FontMetrics  
 > _getFontSpacing() 的结果并不是通过 FontMetrics 的标准值计算出来的，而是另外计算出来的一个值，它能够做到在两行文字不显得拥挤的前提下缩短行距，以此来得到更好的显示效果。所以如果你要对文字手动换行绘制，多数时候应该选取 getFontSpacing() 来得到行距，不但使用更简单，显示效果也会更好._
 ##### 2.2.3. `getTextBounds()` 获取文字的显示范围  
 ##### 2.2.4. `float measureText` 测量文字的宽度并返回  
