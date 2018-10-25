@@ -50,10 +50,10 @@
     2.2. 测量文字尺寸类  
         2.2.1. `float getFontSpacing()` 获取推荐的行距，即推荐的两行文字的 baseline 的距离  
         2.2.2. `FontMetircs getFontMetrics()` 获取 Paint 的 FontMetrics  
-            > getFontSpacing() 的结果并不是通过 FontMetrics 的标准值计算出来的，而是另外计算出来的一个值，它能够做到在两行文字不显得拥挤的前提  下缩短行距，以此来得到更好的显示效果。所以如果你要对文字手动换行绘制，多数时候应该选取 getFontSpacing() 来得到行距，不但使用更简单，显示效果也会更好.
+> getFontSpacing() 的结果并不是通过 FontMetrics 的标准值计算出来的，而是另外计算出来的一个值，它能够做到在两行文字不显得拥挤的前提下缩短行距，以此来得到更好的显示效果。所以如果你要对文字手动换行绘制，多数时候应该选取 getFontSpacing() 来得到行距，不但使用更简单，显示效果也会更好.
         2.2.3. `getTextBounds()` 获取文字的显示范围  
         2.2.4. `float measureText` 测量文字的宽度并返回  
-             > measureText() 测出来的宽度总是比 getTextBounds() 大一点点；前者测量实际占用宽度，后者测量显示范围  
+> measureText() 测出来的宽度总是比 getTextBounds() 大一点点；前者测量实际占用宽度，后者测量显示范围  
         2.2.5. `getTextWidths()` 获取字符串中每个字符的宽度，并把结果填入参数 widths  
         2.2.6. `int breakText()` breakText() 是在给出宽度上限的前提下测量文字的宽度。如果文字的宽度超出了上限，那么在临近超限的位置截断文字  
         2.2.7. 光标相关  
