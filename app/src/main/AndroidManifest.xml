@@ -25,91 +25,91 @@
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item0" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learncomponent.ComponentActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item1" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnlayout.LayoutActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item2" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learninteraction.InteractionActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item3" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learndata.activity.DataStorageActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item4" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnhttp.HttpActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item5" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnanimation.AnimationActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item6" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learndrawview.DrawViewActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item7" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnmedia.MediaActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item8" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnui.uiadvance.UIAdvancedActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item9" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnstyle.StyleActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item10" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--  设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnthreads.ThreadsActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item11" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
         <activity android:name="com.chen.coolandroid.learnothers.OthersActivity">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item12" />
 
-                <category android:name="android.intent.category.DEFAULT" /> <!-- 不设置category还不行... -->
+                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
             </intent-filter>
         </activity>
 

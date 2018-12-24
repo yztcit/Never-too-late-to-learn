@@ -4,8 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.chen.coolandroid.tool.LogUtil;
-
 import java.io.FileDescriptor;
 
 /**
@@ -44,6 +42,7 @@ public class ImageResizer {
         //First decode width inJustDecodeBounds = true to check dimensions;
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFileDescriptor(fd, null, options);
 
         //Calculate inSampleSize;
         options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
