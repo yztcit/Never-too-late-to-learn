@@ -1,134 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chen.coolandroid">
+          package="com.chen.coolandroid">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
+        android:name=".activity.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.chen.coolandroid.activity.CustomApplication">
-        <activity android:name="com.chen.coolandroid.activity.MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name="com.chen.coolandroid.learnui.uibase.UIBaseActivity">
+        <activity android:name=".learnui.uibase.UIBaseActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item0" />
+                <action android:name="com.chen.coolandroid.item0"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learncomponent.ComponentActivity">
+        <activity android:name=".learncomponent.ComponentActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item1" />
+                <action android:name="com.chen.coolandroid.item1"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnlayout.LayoutActivity">
+        <activity android:name=".learnlayout.LayoutActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item2" />
+                <action android:name="com.chen.coolandroid.item2"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learninteraction.InteractionActivity">
+        <activity android:name=".learninteraction.InteractionActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item3" />
+                <action android:name="com.chen.coolandroid.item3"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learndata.activity.DataStorageActivity">
+        <activity android:name=".learndata.activity.DataStorageActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item4" />
+                <action android:name="com.chen.coolandroid.item4"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnhttp.HttpActivity">
+        <activity android:name=".learnhttp.HttpActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item5" />
+                <action android:name="com.chen.coolandroid.item5"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnanimation.AnimationActivity">
+        <activity android:name=".learnanimation.AnimationActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item6" />
+                <action android:name="com.chen.coolandroid.item6"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learndrawview.DrawViewActivity">
+        <activity android:name=".learndrawview.DrawViewActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item7" />
+                <action android:name="com.chen.coolandroid.item7"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnmedia.MediaActivity">
+        <activity android:name=".learnmedia.MediaActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item8" />
+                <action android:name="com.chen.coolandroid.item8"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnui.uiadvance.UIAdvancedActivity">
+        <activity android:name=".learnui.uiadvance.UIAdvancedActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item9" />
+                <action android:name="com.chen.coolandroid.item9"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnstyle.StyleActivity">
+        <activity android:name=".learnstyle.StyleActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item10" />
+                <action android:name="com.chen.coolandroid.item10"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--  设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnthreads.ThreadsActivity">
+        <activity android:name=".learnthreads.ThreadsActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item11" />
+                <action android:name="com.chen.coolandroid.item11"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name="com.chen.coolandroid.learnothers.OthersActivity">
+        <activity android:name=".learnothers.OthersActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item12" />
+                <action android:name="com.chen.coolandroid.item12"/>
 
-                <category android:name="android.intent.category.DEFAULT" /> <!--设置 default category... -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryImagesActivity"
+        <activity
+            android:name=".learndata.activity.CategoryImagesActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryAudiosActivity"
+        <activity
+            android:name=".learndata.activity.CategoryAudiosActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryVideosActivity"
+        <activity
+            android:name=".learndata.activity.CategoryVideosActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryDocumentsActivity"
+        <activity
+            android:name=".learndata.activity.CategoryDocumentsActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryArchivesActivity"
+        <activity
+            android:name=".learndata.activity.CategoryArchivesActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryAppsActivity"
+        <activity
+            android:name=".learndata.activity.CategoryAppsActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryDownloadsActivity"
+        <activity
+            android:name=".learndata.activity.CategoryDownloadsActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.chen.coolandroid.learndata.activity.CategoryMoreActivity"
+        <activity
+            android:name=".learndata.activity.CategoryMoreActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".learncomponent.SecondActivity"/>
     </application>
 
 </manifest>
