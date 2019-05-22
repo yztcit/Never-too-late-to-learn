@@ -19,7 +19,7 @@
     <string name="learn_threads">11.多线程与通信学习<!--编号11--></string>
     <string name="learn_others">12.其他学习<!--编号12--></string>
 
-    <!--编号4:data storage-->
+    <!--编号4: data storage-->
     <string name="data_storage_images">Images</string>
     <string name="data_storage_audios">Audios</string>
     <string name="data_storage_videos">Videos</string>
@@ -28,4 +28,15 @@
     <string name="data_storage_apps">Apps</string>
     <string name="data_storage_downloads">Downloads</string>
     <string name="data_storage_more">More</string>
+
+    <!--编号6: animation-->
+    <string name="anim_type_tween">Tween Animation</string>
+    <string name="anim_tween_scale">Scale</string>
+    <string name="anim_tween_alpha">alpha</string>
+    <string name="anim_tween_translate">translate</string>
+    <string name="anim_tween_rotate">rotate</string>
+    <string name="anim_set_rotate">set</string>
+
+    <string name="anim_type_frame">Frame Animation</string>
+    <string name="anim_type_property">Property Animation</string>
 </resources>
