@@ -1,6 +1,5 @@
 package com.chen.coolandroid.learncomponent;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,8 +31,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_second:
-                Intent intent = new Intent(this, ComponentActivity.class);
-                startActivity(intent);
+
                 break;
         }
     }
