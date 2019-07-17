@@ -1,5 +1,6 @@
 package com.chen.coolandroid.learnanimation;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.chen.coolandroid.R;
 import com.chen.coolandroid.activity.BaseActivity;
 
@@ -35,6 +37,8 @@ public class AnimationActivity extends BaseActivity implements View.OnClickListe
     private Animation rotateAnim;
     private Animation translateAnim;
     private Animation setAnim;
+
+    private AnimationDrawable animDrawable;
 
     @NonNull
     @Override
@@ -63,15 +67,21 @@ public class AnimationActivity extends BaseActivity implements View.OnClickListe
         mPropertyButton.setOnClickListener(this);
 
         mTestImage = findViewById(R.id.iv_test_anim);
+        mTestImage.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
+        //Tween Animation
         scaleAnim = AnimationUtils.loadAnimation(mContext, R.anim.cool_scale);
         alphaAnim = AnimationUtils.loadAnimation(mContext, R.anim.cool_alpha);
         rotateAnim = AnimationUtils.loadAnimation(mContext, R.anim.cool_rotate);
         translateAnim = AnimationUtils.loadAnimation(mContext, R.anim.cool_translate);
         setAnim = AnimationUtils.loadAnimation(mContext, R.anim.cool_set);
+        //Frame Animation
+        animDrawable = (AnimationDrawable) getResources().getDrawable(R.drawable.anim_frame);
+        mTestImage.setImageDrawable(animDrawable);
+        //Property Animation
     }
 
     @Override
@@ -94,10 +104,18 @@ public class AnimationActivity extends BaseActivity implements View.OnClickListe
                 mTestImage.startAnimation(setAnim);
                 break;
             case R.id.btn_frame_anim:
-
+                boolean running = animDrawable.isRunning();
+                if (running) {
+                    animDrawable.stop();
+                } else {
+                    animDrawable.start();
+                }
                 break;
             case R.id.btn_property_anim:
 
+                break;
+            case R.id.iv_test_anim:
+                ToastUtils.showShort("I'm here!");
                 break;
         }
     }
