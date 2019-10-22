@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -17,10 +16,11 @@ import com.chen.coolandroid.R;
  * 公共头部基类
  * 思路：重写 setContentView, 把 customView 通过addView()添加进去
  */
-public abstract class BaseHeadActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class BaseHeadActivity extends AppCompatActivity {
     protected Context mContext;
     private Toolbar toolbar;
     private Toolbar.OnMenuItemClickListener onMenuItemClickListener;
+    private View.OnClickListener onNavClickListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,14 +41,6 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements View
         initContentView(layoutResID);
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.back) {
-            finish();
-        }
-    }
-
     /**
      *  init common title, load resId
      *
@@ -67,12 +59,16 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements View
             title.setText(titleResId);
         }
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        if (onNavClickListener != null) {
+            toolbar.setNavigationOnClickListener(onNavClickListener);
+        } else {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
     }
 
     /**
@@ -110,6 +106,11 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements View
 
     protected abstract void initData();
 
+    /**
+     *  add extend menu in toolbar
+     *
+     * @return menu id
+     */
     protected int setMenuId(){
         return 0;
     }
@@ -121,5 +122,9 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements View
     public void setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener onMenuItemClickListener) {
         this.onMenuItemClickListener = onMenuItemClickListener;
         toolbar.setOnMenuItemClickListener(onMenuItemClickListener);
+    }
+
+    public void setNavOnClickListener(View.OnClickListener onClickListener){
+        this.onNavClickListener = onClickListener;
     }
 }
