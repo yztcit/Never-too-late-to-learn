@@ -12,6 +12,7 @@ import com.chen.coolandroid.R;
 import com.chen.coolandroid.activity.BaseHeadActivity;
 import com.chen.coolandroid.learnui.widget.drag.DefaultItemCallback;
 import com.chen.coolandroid.learnui.widget.drag.SwipeItemLayout;
+import com.chen.coolandroid.tool.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,7 @@ public class DragDemoActivity extends BaseHeadActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 boolean itemChecked = menuItem.isChecked();
+                LogUtil.d("dragDemo", "item: " + menuItem.getTitle() + "__checked: " + itemChecked);
                 menuItem.setChecked(!itemChecked);
                 switch (menuItem.getItemId()) {
                     case R.id.item_drag:

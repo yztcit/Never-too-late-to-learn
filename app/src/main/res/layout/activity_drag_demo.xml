@@ -6,6 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_description"
+        android:text="右上角选择控制条件"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#333333"
+        android:background="#e6ebf7"
+        android:padding="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcv_drag_demo"
         tools:listitem="@layout/item_rcv_drag"
