@@ -39,4 +39,7 @@
 
     <string name="anim_type_frame">Frame Animation</string>
     <string name="anim_type_property">Property Animation</string>
+
+    <!--编号9: ui advanced-->
+    <string name="ui_drag">拖拽、侧滑展示</string>
 </resources>

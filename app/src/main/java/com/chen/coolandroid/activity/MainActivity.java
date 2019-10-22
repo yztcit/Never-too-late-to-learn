@@ -166,8 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.learn_style), getString(R.string.learn_threads),
                 getString(R.string.learn_others)};
 
-        @SuppressWarnings("unchecked")
-        ArrayAdapter chapterAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, chapterStr);
+        ArrayAdapter<String> chapterAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, chapterStr);
         mainListView.setAdapter(chapterAdapter);
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.chen.coolandroid">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.chen.coolandroid">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -13,7 +14,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -137,6 +139,8 @@
             android:name=".learndata.activity.CategoryMoreActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".learncomponent.SecondActivity"/>
+        <activity android:name=".learnui.uiadvance.DragDemoActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
