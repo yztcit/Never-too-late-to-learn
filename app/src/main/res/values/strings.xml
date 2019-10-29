@@ -42,4 +42,5 @@
 
     <!--编号9: ui advanced-->
     <string name="ui_drag">拖拽、侧滑展示</string>
+    <string name="ui_html_tag">Load Html Tag</string>
 </resources>

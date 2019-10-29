@@ -28,12 +28,16 @@ public class UIAdvancedActivity extends BaseHeadActivity {
 
     @Override
     protected void initData() {
-        String[] chapterStr = new String[]{"侧滑列表", "拖拽效果"};
+        String[] chapterStr = new String[]{"侧滑列表", "拖拽效果", "测试TextView加载HTML"};
         ArrayAdapter<String> chapterAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, chapterStr);
         uiListView.setAdapter(chapterAdapter);
         uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 2) {
+                    HtmlTagActivity.actionStart(mContext);
+                    return;
+                }
                 DragDemoActivity.actionStart(mContext);
             }
         });
