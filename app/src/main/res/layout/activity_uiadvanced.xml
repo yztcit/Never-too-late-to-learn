@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tv_description"
-        android:text="该模块以自定义view为主"
+        android:text="some advance ui implementations"
         android:textSize="@dimen/sp_12"
         android:textColor="#333333"
         android:background="#e6ebf7"

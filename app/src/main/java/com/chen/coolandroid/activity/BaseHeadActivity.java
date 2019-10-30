@@ -125,4 +125,8 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements IBas
     public void setNavOnClickListener(View.OnClickListener onClickListener){
         this.onNavClickListener = onClickListener;
     }
+
+    public Toolbar getToolbar(){
+        return toolbar;
+    }
 }
