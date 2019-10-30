@@ -40,7 +40,7 @@ public final class DownloadUtils {
     private static final int LOG_WARN  = 3;
     private static final int LOG_ERROR = 4;
     @IntDef({LOG_INFO, LOG_DEBUG, LOG_WARN, LOG_ERROR})
-    @Retention(RetentionPolicy.SOURCE)
+    @Retention(RetentionPolicy.CLASS)
     private @interface LogType{}
     private int LOG_STATE = 0;//默认开启Log
 

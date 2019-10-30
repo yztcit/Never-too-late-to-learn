@@ -16,8 +16,10 @@ import com.chen.coolandroid.R;
 /**
  * 公共头部基类
  * 思路：重写 setContentView, 把 customView 通过addView()添加进去
+ * @see #setContentView(int),
+ * @see #initContentView(int)
  */
-public abstract class BaseHeadActivity extends AppCompatActivity {
+public abstract class BaseHeadActivity extends AppCompatActivity implements IBaseView {
     protected Context mContext;
     private Toolbar toolbar;
     private Toolbar.OnMenuItemClickListener onMenuItemClickListener;
@@ -28,7 +30,7 @@ public abstract class BaseHeadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         //customView layout resId
-        setContentView(setContentViewId());
+        setContentView(getContentViewId());
         //******* customView & data ***********
         initView();
         initData();
@@ -45,7 +47,10 @@ public abstract class BaseHeadActivity extends AppCompatActivity {
     /**
      *  init common title, load resId
      *
-     *  @see #setTitleResId()
+     *  @see #setNavigationIconId()
+     *  @see #setNavigationIconDrawable()
+     *  @see #setMenuId()
+     *  @see #getTitleResId()
      */
     private void iniTitle() {
         toolbar = findViewById(R.id.toolbar);
@@ -64,7 +69,7 @@ public abstract class BaseHeadActivity extends AppCompatActivity {
         }
         TextView title = findViewById(R.id.title);
         //set title, null default
-        int titleResId = setTitleResId();
+        int titleResId = getTitleResId();
         if (titleResId != 0) {
             title.setText(titleResId);
         }
@@ -85,8 +90,7 @@ public abstract class BaseHeadActivity extends AppCompatActivity {
      *  add customView layoutId to common container
      *
      * @param layoutResID customView layoutId
-     *
-     * @see #setContentViewId()
+     * @see #getContentViewId()
      */
     private void initContentView(int layoutResID){
         ViewGroup rootView = findViewById(R.id.rootView);
@@ -95,54 +99,19 @@ public abstract class BaseHeadActivity extends AppCompatActivity {
         rootView.addView(contentView);
     }
 
-    /**
-     *  set title resId
-     *
-     * @return resId
-     */
-    protected abstract int setTitleResId();
-
-    /**
-     *  set customView layoutId
-     *
-     * @return layoutId
-     */
-    protected abstract int setContentViewId();
-
-    /**
-     * separate findView and load data
-     */
-    protected abstract void initView();
-
-    protected abstract void initData();
-
-    /**
-     *  add extend menu in toolbar
-     *
-     * @return menu id
-     */
+    //=================↓ override ↓===================
     protected int setMenuId(){
         return 0;
     }
 
-    /**
-     * add navigation icon in Toolbar
-     *
-     * @return icon resId
-     * @see #setNavigationIconId()
-     */
     protected int setNavigationIconId() {
         return 0;
     }
 
-    /**
-     * add navigation icon in Toolbar
-     *
-     * @return icon drawable
-     */
     protected Drawable setNavigationIconDrawable(){
         return null;
     }
+    //=================↑ override ↑===================
 
     public Toolbar.OnMenuItemClickListener getOnMenuItemClickListener() {
         return onMenuItemClickListener;

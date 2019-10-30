@@ -33,22 +33,22 @@ public class DragDemoActivity extends BaseHeadActivity {
     }
 
     @Override
-    protected int setTitleResId() {
+    public int getTitleResId() {
         return R.string.ui_drag;
     }
 
     @Override
-    protected int setContentViewId() {
+    public int getContentViewId() {
         return R.layout.activity_drag_demo;
     }
 
     @Override
-    protected void initView() {
+    public void initView() {
         rcv_drag_demo = findViewById(R.id.rcv_drag_demo);
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         DragAdapter adapter = new DragAdapter(mContext, dataFactory());
         rcv_drag_demo.setLayoutManager(new LinearLayoutManager(mContext));
         rcv_drag_demo.setAdapter(adapter);

@@ -49,22 +49,22 @@ public class HtmlTagActivity extends BaseHeadActivity {
     };
 
     @Override
-    protected int setTitleResId() {
+    public int getTitleResId() {
         return R.string.ui_html_tag;
     }
 
     @Override
-    protected int setContentViewId() {
+    public int getContentViewId() {
         return R.layout.activity_html_tag;
     }
 
     @Override
-    protected void initView() {
+    public void initView() {
         textView = findViewById(R.id.tv_html_tag);
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         textView.setText(Html.fromHtml(htmlStr, imgGetter, null));
     }
 

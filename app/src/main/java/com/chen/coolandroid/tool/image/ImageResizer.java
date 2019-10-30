@@ -10,7 +10,7 @@ import java.io.FileDescriptor;
  * Created by Apple on 2018/12/13.
  *
  * 《Android艺术探索》chapter-12
- *  https://github.com/singwhatiwanna/android-art-res/blob/master/Chapter_12/
+ *  {@link "https://github.com/singwhatiwanna/android-art-res/blob/master/Chapter_12/"}
  *
  * 图片压缩
  */

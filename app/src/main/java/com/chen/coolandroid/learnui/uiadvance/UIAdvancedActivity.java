@@ -12,22 +12,22 @@ public class UIAdvancedActivity extends BaseHeadActivity {
     private ListView uiListView;
 
     @Override
-    protected int setTitleResId() {
+    public int getTitleResId() {
         return R.string.learn_UI_advanced;
     }
 
     @Override
-    protected int setContentViewId() {
+    public int getContentViewId() {
         return R.layout.activity_uiadvanced;
     }
 
     @Override
-    protected void initView() {
+    public void initView() {
         uiListView = findViewById(R.id.lv_ui);
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         String[] chapterStr = new String[]{"侧滑列表", "拖拽效果", "测试TextView加载HTML"};
         ArrayAdapter<String> chapterAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, chapterStr);
         uiListView.setAdapter(chapterAdapter);
