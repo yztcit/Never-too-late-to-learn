@@ -1,6 +1,7 @@
 package com.chen.coolandroid.activity;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -48,17 +49,26 @@ public abstract class BaseHeadActivity extends AppCompatActivity {
      */
     private void iniTitle() {
         toolbar = findViewById(R.id.toolbar);
+        //setNavigationIcon, "X" icon default
+        int navigationIconId = setNavigationIconId();
+        if (navigationIconId != 0) {
+            toolbar.setNavigationIcon(navigationIconId);
+        } else {
+            Drawable drawable = setNavigationIconDrawable();
+            if (drawable != null) toolbar.setNavigationIcon(drawable);
+        }
+        //set menu in Toolbar, null default
         int menuId = setMenuId();
         if (menuId != 0) {
             toolbar.inflateMenu(menuId);
         }
         TextView title = findViewById(R.id.title);
-
+        //set title, null default
         int titleResId = setTitleResId();
         if (titleResId != 0) {
             title.setText(titleResId);
         }
-
+        //set navigation icon click listener, default finish current activity
         if (onNavClickListener != null) {
             toolbar.setNavigationOnClickListener(onNavClickListener);
         } else {
@@ -113,6 +123,25 @@ public abstract class BaseHeadActivity extends AppCompatActivity {
      */
     protected int setMenuId(){
         return 0;
+    }
+
+    /**
+     * add navigation icon in Toolbar
+     *
+     * @return icon resId
+     * @see #setNavigationIconId()
+     */
+    protected int setNavigationIconId() {
+        return 0;
+    }
+
+    /**
+     * add navigation icon in Toolbar
+     *
+     * @return icon drawable
+     */
+    protected Drawable setNavigationIconDrawable(){
+        return null;
     }
 
     public Toolbar.OnMenuItemClickListener getOnMenuItemClickListener() {
