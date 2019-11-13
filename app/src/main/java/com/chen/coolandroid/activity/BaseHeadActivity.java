@@ -99,7 +99,7 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements IBas
         rootView.addView(contentView);
     }
 
-    //=================↓ override ↓===================
+    /***********************↓ override ↓*********************/
     protected int setMenuId(){
         return 0;
     }
@@ -111,7 +111,7 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements IBas
     protected Drawable setNavigationIconDrawable(){
         return null;
     }
-    //=================↑ override ↑===================
+    /***********************↑ override ↑***********************/
 
     public Toolbar.OnMenuItemClickListener getOnMenuItemClickListener() {
         return onMenuItemClickListener;
