@@ -17,7 +17,8 @@
 #}
 #-------------------------------------------定制化区域----------------------------------------------
 #---------------------------------1.实体类---------------------------------
--keep class * extends com.chen.coolandroid.entities.BaseBean { *; }
+-keep public class * extends com.chen.coolandroid.entities.BaseBeanParcelable { *; }
+-keep public class * extends com.chen.coolandroid.entities.BaseBeanSerializable { *; }
 
 
 #-------------------------------------------------------------------------

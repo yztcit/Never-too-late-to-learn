@@ -6,12 +6,12 @@ import android.os.Parcelable;
 /**
  * Created by Apple on 2019/11/18.
  */
-public class BaseBean<T extends Parcelable> implements Parcelable {
+public class BaseBeanParcelable<T extends Parcelable> implements Parcelable {
     private String retCode;
     private String retMsg;
     private T data;
 
-    public BaseBean() {
+    public BaseBeanParcelable() {
     }
 
     public String getRetCode() {
@@ -54,10 +54,10 @@ public class BaseBean<T extends Parcelable> implements Parcelable {
         return 0;
     }
 
-    public static final Creator<BaseBean> CREATOR = new Creator<BaseBean>() {
+    public static final Creator<BaseBeanParcelable> CREATOR = new Creator<BaseBeanParcelable>() {
         @Override
-        public BaseBean createFromParcel(Parcel in) {
-            BaseBean baseBean = new BaseBean();
+        public BaseBeanParcelable createFromParcel(Parcel in) {
+            BaseBeanParcelable baseBean = new BaseBeanParcelable();
             baseBean.retCode = in.readString();
             baseBean.retMsg = in.readString();
             //---- 拿到序列化的标准类名，通过反射得到ClassLoader ----↑
@@ -72,8 +72,8 @@ public class BaseBean<T extends Parcelable> implements Parcelable {
         }
 
         @Override
-        public BaseBean[] newArray(int size) {
-            return new BaseBean[size];
+        public BaseBeanParcelable[] newArray(int size) {
+            return new BaseBeanParcelable[size];
         }
     };
 }
