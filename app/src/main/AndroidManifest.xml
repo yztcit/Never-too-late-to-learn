@@ -148,6 +148,12 @@
         <activity android:name=".learncomponent.rxpractise.RxActivity"
             android:process=":com.chen.coolandroid.rxpractise"
             android:screenOrientation="portrait"/>
+        <activity android:name=".learnthreads.AIDLTestActivity" />
+
+        <service android:name=".learnthreads.RemoteService"
+            android:process=":remote"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

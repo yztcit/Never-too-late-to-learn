@@ -1,15 +1,42 @@
 package com.chen.coolandroid.learnthreads;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Intent;
+import android.view.View;
 
 import com.chen.coolandroid.R;
+import com.chen.coolandroid.activity.BaseHeadActivity;
 
-public class ThreadsActivity extends AppCompatActivity {
+/**
+ *  编号11.多线程与通信学习
+ */
+public class ThreadsActivity extends BaseHeadActivity implements View.OnClickListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_threads);
+    public int getTitleResId() {
+        return R.string.thread_learn;
+    }
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_threads;
+    }
+
+    @Override
+    public void initView() {
+        findViewById(R.id.btn_ipc_test).setOnClickListener(this);
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.btn_ipc_test) {
+            Intent intent = new Intent(mContext, AIDLTestActivity.class);
+            startActivity(intent);
+        }
     }
 }

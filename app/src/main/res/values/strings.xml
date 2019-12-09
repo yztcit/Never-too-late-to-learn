@@ -46,4 +46,8 @@
     <!--编号9: ui advanced-->
     <string name="ui_drag">拖拽、侧滑展示</string>
     <string name="ui_html_tag">Load Html Tag</string>
+
+    <!--j编号11：多线程通信-->
+    <string name="thread_learn">多线程通信</string>
+    <string name="ipc_aidl">AIDL Practice</string>
 </resources>
