@@ -8,7 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.chen.coolandroid.R;
-
+import com.chen.coolandroid.learncomponent.rxpractise.RxActivity;
+/**编号1.四大组件学习*/
 public class ComponentActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView desc;
     private Button rootButton;
@@ -26,6 +27,8 @@ public class ComponentActivity extends AppCompatActivity implements View.OnClick
 
         rootButton = findViewById(R.id.btn_root);
         rootButton.setOnClickListener(this);
+
+        findViewById(R.id.btn_rx_process).setOnClickListener(this);
     }
 
     @Override
@@ -33,6 +36,14 @@ public class ComponentActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.btn_root:
                 toSecondActivity();
+                break;
+            case R.id.btn_rx_process:
+                //这里的 RxActivity 是在新的私有进程中运行的；
+                //延伸：启动其他的应用方法
+                //1)PackageManager通过应用的包名启动
+                //2)ComponentName 启动其他应用的 exported=true 的activity
+                Intent intent = new Intent(this, RxActivity.class);
+                startActivity(intent);
                 break;
         }
     }

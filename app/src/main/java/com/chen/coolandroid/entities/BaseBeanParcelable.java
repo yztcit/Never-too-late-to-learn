@@ -14,6 +14,10 @@ public class BaseBeanParcelable<T extends Parcelable> implements Parcelable {
     public BaseBeanParcelable() {
     }
 
+    public BaseBeanParcelable(Parcel in) {
+        readFromParcelable(in);
+    }
+
     public String getRetCode() {
         return retCode;
     }
@@ -57,18 +61,7 @@ public class BaseBeanParcelable<T extends Parcelable> implements Parcelable {
     public static final Creator<BaseBeanParcelable> CREATOR = new Creator<BaseBeanParcelable>() {
         @Override
         public BaseBeanParcelable createFromParcel(Parcel in) {
-            BaseBeanParcelable baseBean = new BaseBeanParcelable();
-            baseBean.retCode = in.readString();
-            baseBean.retMsg = in.readString();
-            //---- 拿到序列化的标准类名，通过反射得到ClassLoader ----↑
-            String dataName = in.readString();
-            try {
-                if (dataName == null) return baseBean;
-                baseBean.data = in.readParcelable(Class.forName(dataName).getClassLoader());
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            return baseBean;
+            return new BaseBeanParcelable(in);
         }
 
         @Override
@@ -76,4 +69,18 @@ public class BaseBeanParcelable<T extends Parcelable> implements Parcelable {
             return new BaseBeanParcelable[size];
         }
     };
+
+    private void readFromParcelable(Parcel in){
+        BaseBeanParcelable baseBean = new BaseBeanParcelable();
+        baseBean.retCode = in.readString();
+        baseBean.retMsg = in.readString();
+        //---- 拿到序列化的标准类名，通过反射得到ClassLoader ----↑
+        String dataName = in.readString();
+        try {
+            if (dataName == null) return;
+            baseBean.data = in.readParcelable(Class.forName(dataName).getClassLoader());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
