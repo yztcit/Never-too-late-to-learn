@@ -13,7 +13,7 @@ public class ThreadsActivity extends BaseHeadActivity implements View.OnClickLis
 
     @Override
     public int getTitleResId() {
-        return R.string.thread_learn;
+        return R.string.learn_threads;
     }
 
     @Override

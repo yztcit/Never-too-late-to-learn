@@ -39,15 +39,16 @@
     <string name="anim_tween_translate">translate</string>
     <string name="anim_tween_rotate">rotate</string>
     <string name="anim_set_rotate">set</string>
-
     <string name="anim_type_frame">Frame Animation</string>
     <string name="anim_type_property">Property Animation</string>
+
+    <!--编号7: 画图学习-->
+    <string name="draw_follow_view">手势跟随</string>
 
     <!--编号9: ui advanced-->
     <string name="ui_drag">拖拽、侧滑展示</string>
     <string name="ui_html_tag">Load Html Tag</string>
 
     <!--j编号11：多线程通信-->
-    <string name="thread_learn">多线程通信</string>
     <string name="ipc_aidl">AIDL Practice</string>
 </resources>
