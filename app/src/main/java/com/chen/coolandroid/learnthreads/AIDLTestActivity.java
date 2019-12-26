@@ -13,6 +13,8 @@ import com.chen.coolandroid.R;
 import com.chen.coolandroid.activity.BaseHeadActivity;
 import com.chen.coolandroid.tool.LogUtil;
 
+import java.util.Locale;
+
 /**
  * Created by Apple on 2019/12/9.
  */
@@ -41,6 +43,12 @@ public class AIDLTestActivity extends BaseHeadActivity {
         bindService(intent, connection, BIND_AUTO_CREATE);
     }
 
+    @Override
+    protected void onDestroy() {
+        if (connection != null) unbindService(connection);
+        super.onDestroy();
+    }
+
     private IRemoteService remoteService;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -50,9 +58,9 @@ public class AIDLTestActivity extends BaseHeadActivity {
             try {
                 int clientPid = Process.myPid();
                 int remoteServicePid = remoteService.getPid();
-                tvTest.setText(
-                        String.format("Client pid = %d\nRemoteService pid = %d",
-                                clientPid, remoteServicePid));
+                String msg = "Client pid = %d\nRemoteService pid = %d";
+                String aCase = msg.toUpperCase(Locale.getDefault());
+                tvTest.setText(String.format(aCase, clientPid, remoteServicePid));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
