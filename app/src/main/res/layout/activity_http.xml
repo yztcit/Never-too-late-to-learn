@@ -10,4 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.chen.coolandroid.learnhttp.HttpActivity">
 
+    <Button
+        android:onClick="httpClientTest"
+        android:text="@string/http_httpclient"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

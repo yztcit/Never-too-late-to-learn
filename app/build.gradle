@@ -25,6 +25,9 @@ android {
     }
     productFlavors {
     }
+
+    //for android 6.0 remove HttpClient library from sdk
+    useLibrary('org.apache.http.legacy')
 }
 
 dependencies {

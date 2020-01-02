@@ -32,6 +32,9 @@
     <string name="data_storage_downloads">Downloads</string>
     <string name="data_storage_more">More</string>
 
+    <!--编号5：网络访问-->
+    <string name="http_httpclient">http client test</string>
+
     <!--编号6: animation-->
     <string name="anim_type_tween">Tween Animation</string>
     <string name="anim_tween_scale">Scale</string>
