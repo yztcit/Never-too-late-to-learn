@@ -55,4 +55,5 @@
 
     <!--j编号11：多线程通信-->
     <string name="ipc_aidl">AIDL Practice</string>
+    <string name="threads_sync">多线程-同步</string>
 </resources>

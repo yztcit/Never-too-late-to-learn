@@ -58,9 +58,8 @@ public class AIDLTestActivity extends BaseHeadActivity {
             try {
                 int clientPid = Process.myPid();
                 int remoteServicePid = remoteService.getPid();
-                String msg = "Client pid = %d\nRemoteService pid = %d";
-                String aCase = msg.toUpperCase(Locale.getDefault());
-                tvTest.setText(String.format(aCase, clientPid, remoteServicePid));
+                String msg = "Client pid = " + clientPid + "\nRemoteService pid = " + remoteServicePid;
+                tvTest.setText(msg);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
