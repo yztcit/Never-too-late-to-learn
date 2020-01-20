@@ -1,17 +1,22 @@
 package com.chen.coolandroid.learnthreads;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.chen.coolandroid.R;
 import com.chen.coolandroid.activity.BaseHeadActivity;
 
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- *  编号11.多线程与通信学习
+ * 编号11.多线程与通信学习
  */
 public class ThreadsActivity extends BaseHeadActivity implements View.OnClickListener {
 
@@ -62,7 +67,9 @@ public class ThreadsActivity extends BaseHeadActivity implements View.OnClickLis
 
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
+        Alipay alipay = new Alipay(4, 10000);
+        Alipay2 alipay2 = new Alipay2(4, 10000);
         //创建线程：
         //1、继承Thread类，重写run方法；
         //2、实现Runnable接口，并实现该接口的run方法；
@@ -77,15 +84,23 @@ public class ThreadsActivity extends BaseHeadActivity implements View.OnClickLis
         TestThread testThread = new TestThread();
         testThread.run();
         //----2、----
-        TestRunnable testRunnable = new TestRunnable();
-        Thread thread = new Thread(testRunnable, "Thread-runnable");
-        thread.run();
+        TestRunnable testRunnable = new TestRunnable(alipay2, 1, 2, 11000);
+        TestRunnable testRunnable2 = new TestRunnable(alipay2, 3, 1, 6000);
+        Thread thread = new Thread(testRunnable);
+        Thread thread2 = new Thread(testRunnable2);
+        ExecutorService executorService = Executors.newFixedThreadPool(2, new TestThreadFactory());
+        executorService.execute(thread);
+        executorService.execute(thread2);
         //----3、----
-        TestCallable testCallable = new TestCallable();
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<Integer> future = executorService.submit(testCallable);
+        TestCallable testCallable0 = new TestCallable(alipay, 0, 1, 11000);
+        TestCallable testCallable1 = new TestCallable(alipay, 2, 0, 5000);
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(2);
+
         try {
-            System.out.println("test callable: " + future.get());
+            Future<Integer> future0 = fixedThreadPool.submit(testCallable0);
+            Future<Integer> future1 = fixedThreadPool.submit(testCallable1);
+            System.out.println("test callable0: " + future0.get() + ", accounts = " + Arrays.toString(alipay.getAccounts()));
+            System.out.println("test callable1: " + future1.get() + ", accounts = " + Arrays.toString(alipay.getAccounts()));
         } catch (Exception e) {
             e.printStackTrace();
         }
