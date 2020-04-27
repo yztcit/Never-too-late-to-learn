@@ -3,9 +3,11 @@ package com.chen.coolandroid.learnothers;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +39,36 @@ public class OthersActivity extends AppCompatActivity implements AbsListView.OnS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_others);
+
+        shareTest();
+
         initData();
         initView();
+    }
+
+    /**
+     * 网页跳转APP测试
+     * assets/index.html
+     * 自定义src: nttn://nttn.com/test?id=123
+     * manifest中设置过滤
+     */
+    private void shareTest() {
+        try {
+            Uri data = getIntent().getData();
+            String scheme = data.getScheme();
+            String host = data.getHost();
+            String path = data.getPath();
+            String id = data.getQueryParameter("id");
+            Log.e(
+                    "Others", "shareTest: "
+                            + "\nscheme: " + scheme
+                            + "\nhost: " + host
+                            + "\npath: " + path
+                            + "\nid: " + id
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initView() {

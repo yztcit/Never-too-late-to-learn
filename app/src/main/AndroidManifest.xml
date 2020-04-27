@@ -108,11 +108,18 @@
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnothers.OthersActivity">
+        <activity android:name=".learnothers.OthersActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="com.chen.coolandroid.item12"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="nttn" android:host="nttn.com"/>
             </intent-filter>
         </activity>
         <activity
