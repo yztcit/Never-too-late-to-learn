@@ -40,6 +40,7 @@ public class ComponentActivity extends BaseHeadActivity implements View.OnClickL
         rootButton.setOnClickListener(this);
 
         findViewById(R.id.btn_rx_process).setOnClickListener(this);
+        findViewById(R.id.btn_easy_request).setOnClickListener(this);
     }
 
     @Override
