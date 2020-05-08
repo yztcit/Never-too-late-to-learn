@@ -30,4 +30,12 @@
         android:layout_below="@+id/btn_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_easy_request"
+        android:text="test activity result"
+        android:textAllCaps="false"
+        android:layout_below="@+id/btn_rx_process"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

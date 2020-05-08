@@ -7,21 +7,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.chen.coolandroid.R;
+import com.chen.coolandroid.activity.BaseHeadActivity;
 import com.chen.coolandroid.learncomponent.rxpractise.RxActivity;
+import com.chen.coolandroid.learnothers.OthersActivity;
+import com.chen.coolandroid.tool.LogUtil;
+import com.chen.coolandroid.tool.result.ActResultRequest;
+
 /**编号1.四大组件学习*/
-public class ComponentActivity extends AppCompatActivity implements View.OnClickListener{
+public class ComponentActivity extends BaseHeadActivity implements View.OnClickListener{
+    private static final String TAG = "ComponentActivity";
     private TextView desc;
     private Button rootButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_component);
-        initView();
+    public int getTitleResId() {
+        return R.string.learn_component;
     }
 
-    private void initView() {
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_component;
+    }
+
+    @Override
+    public void initView() {
         desc = findViewById(R.id.desc);
         desc.setText(this.toString());
 
@@ -29,6 +40,11 @@ public class ComponentActivity extends AppCompatActivity implements View.OnClick
         rootButton.setOnClickListener(this);
 
         findViewById(R.id.btn_rx_process).setOnClickListener(this);
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     @Override
@@ -45,7 +61,23 @@ public class ComponentActivity extends AppCompatActivity implements View.OnClick
                 Intent intent = new Intent(this, RxActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.btn_easy_request:
+                easyRequest();
+                break;
         }
+    }
+
+    private void easyRequest() {
+        Intent resultIntent = new Intent(this, OthersActivity.class);
+        ActResultRequest.init().startForResult(this, resultIntent, 11,
+                new ActResultRequest.Callback() {
+                    @Override
+                    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                        if (resultCode == RESULT_OK) {
+                            LogUtil.e(TAG, "resultData:" + data.getStringExtra("data"));
+                        }
+                    }
+                });
     }
 
     private void toSecondActivity() {

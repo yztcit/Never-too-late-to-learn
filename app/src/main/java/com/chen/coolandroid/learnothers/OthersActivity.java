@@ -2,6 +2,7 @@ package com.chen.coolandroid.learnothers;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.chen.coolandroid.R;
+import com.chen.coolandroid.learncomponent.ComponentActivity;
 import com.chen.coolandroid.tool.MyUtils;
 import com.chen.coolandroid.tool.image.ImageLoader;
 
@@ -44,6 +46,17 @@ public class OthersActivity extends AppCompatActivity implements AbsListView.OnS
 
         initData();
         initView();
+
+        easyResult();
+    }
+
+    /**
+     * {@link ComponentActivity#easyRequest()}
+     */
+    private void easyResult() {
+        Intent intent = getIntent();
+        intent.putExtra("data", "test");
+        setResult(RESULT_OK, intent);
     }
 
     /**
