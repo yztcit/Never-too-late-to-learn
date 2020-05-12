@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.blankj.utilcode.util.Utils;
 import com.chen.coolandroid.tool.LogUtil;
+import com.chen.coolandroid.tool.network.NetworkStateUtil;
 
 /**
  * Created by Chen on 2018/4/25.
@@ -23,6 +24,8 @@ public class CustomApplication extends Application {
         setContext(getApplicationContext());
 
         Utils.init(this);// a github open util,need init in application first;
+
+        NetworkStateUtil.getInstance().init(this);
 
         registerActivityLifecycleCallbacks(lifecycleCallbacks);
     }
