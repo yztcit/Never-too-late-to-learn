@@ -85,20 +85,24 @@ public class CustomApplication extends Application {
             NetworkStateUtil.getInstance().unregister(this);
         }
 
-        @NetStateMonitor(netStates = {NetworkState.NONE, NetworkState.FIVE_GENERATION})
+        @NetStateMonitor(netStates = NetworkState.AUTO)
+        public void onNetChanged(NetworkState state) {
+            LogUtil.i("onNetChanged>>>", state.getStateName());
+        }
+
+        @NetStateMonitor(netStates = {NetworkState.NONE})
         public void onNetLost(NetworkState networkState) {
-            LogUtil.i(TAG, "onNetLost：" + networkState.getStateName());
+            ToastUtils.showShort("网络走丢了");
         }
 
         @NetStateMonitor(netStates = NetworkState.WIFI)
         public void onWifiAvailable(NetworkState networkState) {
-            LogUtil.i(TAG, "onWifiAvailable：" + networkState.getStateName());
+            ToastUtils.showShort("正在使用WIFI，不用担心流量了");
         }
 
         @NetStateMonitor(netStates = {NetworkState.MOBILE})
         public void useMobileNet(NetworkState networkState) {
-            LogUtil.i(TAG, "useMobileNet: " + networkState.getStateName());
-            ToastUtils.showShort("正在使用移动数据，请注意流量");
+            ToastUtils.showShort("正在使用移动数据（" + networkState.getStateName() + "），请注意流量");
         }
     };
 }

@@ -191,7 +191,7 @@ public class NetworkStateUtil implements NetworkCallbackImp.NetworkCallback,
 
     @Override
     public void onMobileAvailable() {
-        if (postNetState(NetworkState.MOBILE)) {
+        if (postNetState(getNetworkState(application))) {
             LogUtil.w(TAG, "移动网络连接了");
         }
     }
@@ -204,7 +204,7 @@ public class NetworkStateUtil implements NetworkCallbackImp.NetworkCallback,
     /**
      * 通知所有注册的方法，网络发生了改变
      * @param state The {@link NetworkState}
-     * @return boolean 重复通知成功
+     * @return boolean 通知成功
      */
     private boolean postNetState(NetworkState state) {
         //同一个状态在一定的时间间隔里避免重复通知
