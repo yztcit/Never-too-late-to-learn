@@ -23,8 +23,10 @@ public class NetworkCallbackImp extends ConnectivityManager.NetworkCallback {
     public interface NetworkCallback{
         void onAvailable();
         void onLost();
+        void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities);
         void onWifiAvailable();
         void onMobileAvailable();
+        void onLinkPropertiesChanged(Network network, LinkProperties linkProperties);
     }
 
     /**
@@ -76,6 +78,9 @@ public class NetworkCallbackImp extends ConnectivityManager.NetworkCallback {
     public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
         super.onCapabilitiesChanged(network, networkCapabilities);
         if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
+            if (callback != null) {
+                callback.onCapabilitiesChanged(network, networkCapabilities);
+            }
             if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                 if (callback != null) {
                     callback.onWifiAvailable();
@@ -96,5 +101,8 @@ public class NetworkCallbackImp extends ConnectivityManager.NetworkCallback {
     @Override
     public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
         super.onLinkPropertiesChanged(network, linkProperties);
+        if (callback != null) {
+            callback.onLinkPropertiesChanged(network, linkProperties);
+        }
     }
 }

@@ -12,5 +12,14 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NetStateMonitor {
-    NetworkState netState() default NetworkState.AUTO;
+    NetworkState[] netStates() default {
+            NetworkState.AUTO,
+            NetworkState.WIFI,
+            NetworkState.NONE,
+            NetworkState.MOBILE,
+            NetworkState.SECOND_GENERATION,
+            NetworkState.THIRD_GENERATION,
+            NetworkState.FOUR_GENERATION,
+            NetworkState.FIVE_GENERATION
+    };
 }

@@ -5,8 +5,11 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.chen.coolandroid.tool.LogUtil;
+import com.chen.coolandroid.tool.network.NetStateMonitor;
+import com.chen.coolandroid.tool.network.NetworkState;
 import com.chen.coolandroid.tool.network.NetworkStateUtil;
 
 /**
@@ -25,7 +28,7 @@ public class CustomApplication extends Application {
 
         Utils.init(this);// a github open util,need init in application first;
 
-        NetworkStateUtil.getInstance().init(this);
+        NetworkStateUtil.getInstance().init(this);//global network state listener
 
         registerActivityLifecycleCallbacks(lifecycleCallbacks);
     }
@@ -53,6 +56,7 @@ public class CustomApplication extends Application {
         @Override
         public void onActivityStarted(Activity activity) {
             LogUtil.i(TAG, "onStarted: " + activity.getLocalClassName());
+            NetworkStateUtil.getInstance().register(this);
         }
 
         @Override
@@ -78,6 +82,23 @@ public class CustomApplication extends Application {
         @Override
         public void onActivityDestroyed(Activity activity) {
             LogUtil.i(TAG, "onDestroyed: " + activity.getLocalClassName());
+            NetworkStateUtil.getInstance().unregister(this);
+        }
+
+        @NetStateMonitor(netStates = {NetworkState.NONE, NetworkState.FIVE_GENERATION})
+        public void onNetLost(NetworkState networkState) {
+            LogUtil.i(TAG, "onNetLost：" + networkState.getStateName());
+        }
+
+        @NetStateMonitor(netStates = NetworkState.WIFI)
+        public void onWifiAvailable(NetworkState networkState) {
+            LogUtil.i(TAG, "onWifiAvailable：" + networkState.getStateName());
+        }
+
+        @NetStateMonitor(netStates = {NetworkState.MOBILE})
+        public void useMobileNet(NetworkState networkState) {
+            LogUtil.i(TAG, "useMobileNet: " + networkState.getStateName());
+            ToastUtils.showShort("正在使用移动数据，请注意流量");
         }
     };
 }

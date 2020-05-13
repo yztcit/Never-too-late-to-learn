@@ -14,15 +14,15 @@ public class MethodManager {
     /**
      * 监听的网络改变类型
      */
-    private NetworkState state;
+    private NetworkState[] states;
     /**
      * 网络改变执行的方法
      */
     private Method method;
 
-    public MethodManager(Class<?> clazz, NetworkState state, Method method) {
+    public MethodManager(Class<?> clazz, NetworkState[] states, Method method) {
         this.clazz = clazz;
-        this.state = state;
+        this.states = states;
         this.method = method;
     }
 
@@ -34,12 +34,12 @@ public class MethodManager {
         this.clazz = clazz;
     }
 
-    public NetworkState getState() {
-        return state;
+    public NetworkState[] getStates() {
+        return states;
     }
 
-    public void setState(NetworkState state) {
-        this.state = state;
+    public void setStates(NetworkState[] states) {
+        this.states = states;
     }
 
     public Method getMethod() {

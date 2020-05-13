@@ -1,21 +1,15 @@
 package com.chen.coolandroid.learncomponent;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.chen.coolandroid.R;
 import com.chen.coolandroid.activity.BaseHeadActivity;
 import com.chen.coolandroid.learncomponent.rxpractise.RxActivity;
 import com.chen.coolandroid.learnothers.OthersActivity;
 import com.chen.coolandroid.tool.LogUtil;
-import com.chen.coolandroid.tool.network.NetStateMonitor;
-import com.chen.coolandroid.tool.network.NetworkState;
-import com.chen.coolandroid.tool.network.NetworkStateUtil;
 import com.chen.coolandroid.tool.result.ActResultRequest;
 
 /**编号1.四大组件学习*/
@@ -51,19 +45,6 @@ public class ComponentActivity extends BaseHeadActivity implements View.OnClickL
 
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        NetworkStateUtil.getInstance().register(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        NetworkStateUtil.getInstance().unregister(this);
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -82,11 +63,6 @@ public class ComponentActivity extends BaseHeadActivity implements View.OnClickL
                 easyRequest();
                 break;
         }
-    }
-
-    @NetStateMonitor(netState = NetworkState.AUTO)
-    public void onNetAvailable(NetworkState networkState) {
-        LogUtil.i(TAG, networkState.getStateName());
     }
 
     private void easyRequest() {
