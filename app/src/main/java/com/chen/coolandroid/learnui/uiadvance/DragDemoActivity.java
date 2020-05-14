@@ -50,14 +50,18 @@ public class DragDemoActivity extends BaseHeadActivity {
     }
 
     @Override
-    protected int setMenuId() {
-        setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+    public int setMenuId() {
+        return R.menu.menu_ui_advance;
+    }
+
+    @Override
+    public Toolbar.OnMenuItemClickListener setOnMenuItemClickListener() {
+        return new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 return dealMenuItem(menuItem);
             }
-        });
-        return R.menu.menu_ui_advance;
+        };
     }
 
     @Override

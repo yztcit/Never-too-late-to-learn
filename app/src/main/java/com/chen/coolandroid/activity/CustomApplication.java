@@ -7,10 +7,11 @@ import android.os.Bundle;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
+import com.chen.coolandroid.tool.ArithmeticUtil;
 import com.chen.coolandroid.tool.LogUtil;
-import com.chen.coolandroid.tool.network.NetStateMonitor;
-import com.chen.coolandroid.tool.network.NetworkState;
-import com.chen.coolandroid.tool.network.NetworkStateUtil;
+import com.chen.coolandroid.tool.networkstate.NetStateMonitor;
+import com.chen.coolandroid.tool.networkstate.NetworkState;
+import com.chen.coolandroid.tool.networkstate.NetworkStateUtil;
 
 /**
  * Created by Chen on 2018/4/25.
@@ -39,12 +40,12 @@ public class CustomApplication extends Application {
         super.onTerminate();
     }
 
-    private void setContext(Context context){
-        mApplicationContext = context;
-    }
-
     public static Context getAppContext(){
         return mApplicationContext;
+    }
+
+    private void setContext(Context context){
+        mApplicationContext = context;
     }
 
     private ActivityLifecycleCallbacks lifecycleCallbacks = new ActivityLifecycleCallbacks() {

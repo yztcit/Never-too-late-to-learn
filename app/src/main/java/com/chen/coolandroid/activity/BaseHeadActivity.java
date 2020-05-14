@@ -22,8 +22,6 @@ import com.chen.coolandroid.R;
 public abstract class BaseHeadActivity extends AppCompatActivity implements IBaseView {
     protected Context mContext;
     private Toolbar toolbar;
-    private Toolbar.OnMenuItemClickListener onMenuItemClickListener;
-    private View.OnClickListener onNavClickListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,18 +60,8 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements IBas
             Drawable drawable = setNavigationIconDrawable();
             if (drawable != null) toolbar.setNavigationIcon(drawable);
         }
-        //set menu in Toolbar, null default
-        int menuId = setMenuId();
-        if (menuId != 0) {
-            toolbar.inflateMenu(menuId);
-        }
-        TextView title = findViewById(R.id.title);
-        //set title, null default
-        int titleResId = getTitleResId();
-        if (titleResId != 0) {
-            title.setText(titleResId);
-        }
         //set navigation icon click listener, default finish current activity
+        View.OnClickListener onNavClickListener = setNavOnClickListener();
         if (onNavClickListener != null) {
             toolbar.setNavigationOnClickListener(onNavClickListener);
         } else {
@@ -83,6 +71,23 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements IBas
                     finish();
                 }
             });
+        }
+
+        //set menu in Toolbar, null default
+        int menuId = setMenuId();
+        if (menuId != 0) {
+            toolbar.inflateMenu(menuId);
+        }
+        Toolbar.OnMenuItemClickListener onMenuItemClickListener = setOnMenuItemClickListener();
+        if (onMenuItemClickListener != null) {
+            toolbar.setOnMenuItemClickListener(onMenuItemClickListener);
+        }
+
+        //set title, null default
+        TextView title = findViewById(R.id.title);
+        int titleResId = getTitleResId();
+        if (titleResId != 0) {
+            title.setText(titleResId);
         }
     }
 
@@ -100,31 +105,31 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements IBas
     }
 
     /***********************↓ override ↓*********************/
-    protected int setMenuId(){
+    @Override
+    public int setMenuId(){
         return 0;
     }
 
-    protected int setNavigationIconId() {
+    @Override
+    public Toolbar.OnMenuItemClickListener setOnMenuItemClickListener() {
+        return null;
+    }
+
+    @Override
+    public int setNavigationIconId() {
         return 0;
     }
 
-    protected Drawable setNavigationIconDrawable(){
+    @Override
+    public Drawable setNavigationIconDrawable(){
+        return null;
+    }
+
+    @Override
+    public View.OnClickListener setNavOnClickListener(){
         return null;
     }
     /***********************↑ override ↑***********************/
-
-    public Toolbar.OnMenuItemClickListener getOnMenuItemClickListener() {
-        return onMenuItemClickListener;
-    }
-
-    public void setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener onMenuItemClickListener) {
-        this.onMenuItemClickListener = onMenuItemClickListener;
-        toolbar.setOnMenuItemClickListener(onMenuItemClickListener);
-    }
-
-    public void setNavOnClickListener(View.OnClickListener onClickListener){
-        this.onNavClickListener = onClickListener;
-    }
 
     public Toolbar getToolbar(){
         return toolbar;

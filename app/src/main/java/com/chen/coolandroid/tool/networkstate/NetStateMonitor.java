@@ -1,4 +1,4 @@
-package com.chen.coolandroid.tool.network;
+package com.chen.coolandroid.tool.networkstate;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,13 +13,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NetStateMonitor {
     NetworkState[] netStates() default {
-            NetworkState.AUTO,
-            NetworkState.WIFI,
-            NetworkState.NONE,
-            NetworkState.MOBILE,
-            NetworkState.SECOND_GENERATION,
-            NetworkState.THIRD_GENERATION,
-            NetworkState.FOUR_GENERATION,
-            NetworkState.FIVE_GENERATION
+            NetworkState.AUTO //默认监听全部转态
     };
 }

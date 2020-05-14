@@ -1,4 +1,4 @@
-package com.chen.coolandroid.tool.network;
+package com.chen.coolandroid.tool.networkstate;
 
 import android.app.Application;
 import android.content.Context;
@@ -167,7 +167,9 @@ public class NetworkStateUtil implements NetworkCallbackImp.NetworkCallback,
 
     @Override
     public void onAvailable() {
-        LogUtil.i(TAG, "网络连接了");
+        if (postNetState(getNetworkState(application))) {
+            LogUtil.i(TAG, "网络连接了");
+        }
     }
 
     @Override

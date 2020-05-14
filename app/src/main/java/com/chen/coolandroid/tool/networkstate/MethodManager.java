@@ -1,4 +1,4 @@
-package com.chen.coolandroid.tool.network;
+package com.chen.coolandroid.tool.networkstate;
 
 import java.lang.reflect.Method;
 
