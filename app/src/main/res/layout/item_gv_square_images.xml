@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center">
 
-    <com.chen.coolandroid.custom.SquareImageView
+    <com.nttn.coolandroid.custom.SquareImageView
         android:id="@+id/iv_images_item"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"

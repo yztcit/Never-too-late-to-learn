@@ -29,7 +29,7 @@ task clean(type: Delete) {
 }
 
 ext{
-    applicationId = "com.chen.coolandroid"
+    applicationId = "com.nttn.coolandroid"
     compileSdkVersion = 28
     targetSdkVersion = 28
     minSdkVersion = 19

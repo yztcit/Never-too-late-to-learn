@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.chen.coolandroid">
+    package="com.nttn.coolandroid">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".activity.CustomApplication"
+        android:name="com.nttn.coolandroid.activity.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,101 +18,101 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.nttn.coolandroid.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".learnui.uibase.UIBaseActivity">
+        <activity android:name="com.nttn.coolandroid.learnui.uibase.UIBaseActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item0"/>
+                <action android:name="${applicationId}.item0"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learncomponent.ComponentActivity">
+        <activity android:name="com.nttn.coolandroid.learncomponent.ComponentActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item1"/>
+                <action android:name="${applicationId}.item1"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnlayout.LayoutActivity">
+        <activity android:name="com.nttn.coolandroid.learnlayout.LayoutActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item2"/>
+                <action android:name="${applicationId}.item2"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learninteraction.InteractionActivity">
+        <activity android:name="com.nttn.coolandroid.learninteraction.InteractionActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item3"/>
+                <action android:name="${applicationId}.item3"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learndata.activity.DataStorageActivity">
+        <activity android:name="com.nttn.coolandroid.learndata.activity.DataStorageActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item4"/>
+                <action android:name="${applicationId}.item4"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnhttp.HttpActivity">
+        <activity android:name="com.nttn.coolandroid.learnhttp.HttpActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item5"/>
+                <action android:name="${applicationId}.item5"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnanimation.AnimationActivity">
+        <activity android:name="com.nttn.coolandroid.learnanimation.AnimationActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item6"/>
+                <action android:name="${applicationId}.item6"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learndrawview.DrawViewActivity">
+        <activity android:name="com.nttn.coolandroid.learndrawview.DrawViewActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item7"/>
+                <action android:name="${applicationId}.item7"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnmedia.MediaActivity">
+        <activity android:name="com.nttn.coolandroid.learnmedia.MediaActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item8"/>
+                <action android:name="${applicationId}.item8"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnui.uiadvance.UIAdvancedActivity">
+        <activity android:name="com.nttn.coolandroid.learnui.uiadvance.UIAdvancedActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item9"/>
+                <action android:name="${applicationId}.item9"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnstyle.StyleActivity">
+        <activity android:name="com.nttn.coolandroid.learnstyle.StyleActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item10"/>
+                <action android:name="${applicationId}.item10"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnthreads.ThreadsActivity">
+        <activity android:name="com.nttn.coolandroid.learnthreads.ThreadsActivity">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item11"/>
+                <action android:name="${applicationId}.item11"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
         </activity>
-        <activity android:name=".learnothers.OthersActivity"
+        <activity android:name="com.nttn.coolandroid.learnothers.OthersActivity"
             android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="com.chen.coolandroid.item12"/>
+                <action android:name="${applicationId}.item12"/>
 
                 <category android:name="android.intent.category.DEFAULT"/> <!-- 设置 default category... -->
             </intent-filter>
@@ -124,41 +124,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".learndata.activity.CategoryImagesActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryImagesActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learndata.activity.CategoryAudiosActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryAudiosActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learndata.activity.CategoryVideosActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryVideosActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learndata.activity.CategoryDocumentsActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryDocumentsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learndata.activity.CategoryArchivesActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryArchivesActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learndata.activity.CategoryAppsActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryAppsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learndata.activity.CategoryDownloadsActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryDownloadsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learndata.activity.CategoryMoreActivity"
+            android:name="com.nttn.coolandroid.learndata.activity.CategoryMoreActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".learncomponent.SecondActivity"/>
-        <activity android:name=".learnui.uiadvance.DragDemoActivity"
+        <activity android:name="com.nttn.coolandroid.learncomponent.SecondActivity"/>
+        <activity android:name="com.nttn.coolandroid.learnui.uiadvance.DragDemoActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".learnui.uiadvance.HtmlTagActivity"
+            android:name="com.nttn.coolandroid.learnui.uiadvance.HtmlTagActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".learncomponent.rxpractise.RxActivity"
+        <activity android:name="com.nttn.coolandroid.learncomponent.rxpractise.RxActivity"
             android:process=":com.chen.coolandroid.rxpractise"
             android:screenOrientation="portrait"/>
-        <activity android:name=".learnthreads.AIDLTestActivity" />
+        <activity android:name="com.nttn.coolandroid.learnthreads.AIDLTestActivity" />
 
-        <service android:name=".learnthreads.RemoteService"
+        <service android:name="com.nttn.coolandroid.learnthreads.RemoteService"
             android:process=":remote"
             android:enabled="true"
             android:exported="true"/>

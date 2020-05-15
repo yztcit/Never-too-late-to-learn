@@ -11,6 +11,6 @@
     <color name="color_white">#ffffff</color>
     <color name="color_common_title">#03A9F4</color>
     <color name="color_common_bg">#EFEFEF</color>
-    <color name="color_bg">#465ce7</color>
+    <color name="color_blue">#465ce7</color>
     <color name="transparent">#00000000</color>
 </resources>

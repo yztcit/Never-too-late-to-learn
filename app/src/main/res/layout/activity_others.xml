@@ -6,7 +6,7 @@
               android:layout_height="match_parent"
               android:gravity="center"
               android:orientation="vertical"
-              tools:context="com.chen.coolandroid.learnothers.OthersActivity">
+              tools:context="com.nttn.coolandroid.learnothers.OthersActivity">
 
     <GridView
         android:id="@+id/gv_others"
