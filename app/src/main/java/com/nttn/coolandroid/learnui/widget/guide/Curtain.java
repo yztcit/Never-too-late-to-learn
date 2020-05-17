@@ -1,8 +1,8 @@
 package com.nttn.coolandroid.learnui.widget.guide;
 
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.annotation.ColorRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +11,8 @@ import android.view.View;
 
 import com.nttn.coolandroid.R;
 import com.nttn.coolandroid.tool.LogUtil;
+
+import java.util.Objects;
 
 /**
  * Created by Apple.
@@ -21,12 +23,23 @@ public class Curtain {
     private FragmentActivity activity;
     private SparseArray<Hollow> mHollows;
     private int mCurtainColor = 0xAA000000;
+    private int mTipLayoutResId = 0;
+    private Callback callback;
+    private boolean mCancelable = true;
 
-    public Curtain(Fragment fragment) {
-        this(fragment.getActivity());
+    public static Curtain with(Fragment fragment) {
+        return new Curtain(fragment);
     }
 
-    public Curtain(FragmentActivity activity) {
+    public static Curtain with(FragmentActivity activity) {
+        return new Curtain(activity);
+    }
+
+    private Curtain(@NonNull Fragment fragment) {
+        this(Objects.requireNonNull(fragment.getActivity()));
+    }
+
+    private Curtain(@NonNull FragmentActivity activity) {
         this.activity = activity;
         this.mHollows = new SparseArray<>();
     }
@@ -86,9 +99,24 @@ public class Curtain {
         return this;
     }
 
-    public void show(){
+    public Curtain tipLayoutResId(@LayoutRes int layoutResId) {
+        mTipLayoutResId = layoutResId;
+        return this;
+    }
+
+    public Curtain setBackCancelable(boolean cancelable) {
+        mCancelable = cancelable;
+        return this;
+    }
+
+    public Curtain setCallback(Callback callback) {
+        this.callback = callback;
+        return this;
+    }
+
+    public void show() {
         if (mHollows.size() <= 0) {
-            LogUtil.d(TAG, "rootView without any view");
+            LogUtil.d(TAG, "without any view");
             return;
         }
         View checkThreadView = mHollows.valueAt(0).targetView;
@@ -107,13 +135,16 @@ public class Curtain {
         guideView.setCurtainColor(mCurtainColor);
         GuideDialog guideDialog = new GuideDialog();
         guideDialog.setAnimationStyle(R.style.DialogAnimation);
+        guideDialog.setCancelable(mCancelable);
         guideDialog.setGuideView(guideView);
+        guideDialog.setTipView(mTipLayoutResId);
+        guideDialog.setCallback(callback);
         guideDialog.show();
     }
 
-    private Hollow[] getHollows(){
+    private Hollow[] getHollows() {
         Hollow[] hollows = new Hollow[mHollows.size()];
-        for (int i = 0; i< mHollows.size(); i++) {
+        for (int i = 0; i < mHollows.size(); i++) {
             hollows[i] = mHollows.valueAt(i);
         }
         return hollows;
@@ -123,8 +154,6 @@ public class Curtain {
         Hollow hollow = mHollows.get(which.hashCode());
         if (hollow == null) {
             hollow = new Hollow(which);
-            hollow.targetRect = new Rect();
-            hollow.targetView.getDrawingRect(hollow.targetRect);
             hollow.setAutoAdaptViewBackground(isAutoAdaptViewBackground);
             mHollows.append(which.hashCode(), hollow);
         }

@@ -37,6 +37,8 @@ public class Hollow {
 
     public Hollow(View targetView) {
         this.targetView = targetView;
+        this.targetRect = new Rect();
+        this.targetView.getDrawingRect(this.targetRect);
     }
 
     public boolean isAutoAdaptViewBackground() {

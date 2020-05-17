@@ -19,6 +19,11 @@
     <string name="learn_threads">11.多线程与通信学习<!--编号11--></string>
     <string name="learn_others">12.其他学习<!--编号12--></string>
 
+    <!--编号0: 基础UI学习-->
+    <string name="last_step">上一步</string>
+    <string name="next_step">下一步</string>
+    <string name="finish">结束</string>
+
     <!--编号1: 四大组件学习-->
     <string name="rx_practise">rx practise</string>
 

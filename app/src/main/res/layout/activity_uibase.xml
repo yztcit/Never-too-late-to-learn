@@ -50,4 +50,16 @@
         android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_flow_show"
+        android:background="@drawable/shape_rect_radius_4_fill_blue"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/color_white"
+        android:text="show flow guide dialog"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
