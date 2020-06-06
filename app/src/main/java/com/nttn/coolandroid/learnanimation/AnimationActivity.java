@@ -11,13 +11,14 @@ import android.widget.ImageView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.nttn.coolandroid.R;
 import com.nttn.coolandroid.activity.BaseActivity;
+import com.nttn.coolandroid.activity.BaseHeadActivity;
 
 /**
  * 动画学习<!--编号6-->
  *  视图(View)动画[补间(Tween)动画、帧(Frame)动画]、属性(Property)动画
  * 传送门：https://blog.csdn.net/harvic880925/article/details/39996643
  */
-public class AnimationActivity extends BaseActivity implements View.OnClickListener{
+public class AnimationActivity extends BaseHeadActivity implements View.OnClickListener{
     private static final String TAG = "AnimationActivity";
     private Button mScaleButton;
     private Button mTranslateButton;
@@ -38,14 +39,18 @@ public class AnimationActivity extends BaseActivity implements View.OnClickListe
 
     private AnimationDrawable animDrawable;
 
-    @NonNull
     @Override
-    protected int getLayoutResId() {
+    public int getTitleResId() {
+        return R.string.learn_animation;
+    }
+
+    @Override
+    public int getContentViewId() {
         return R.layout.activity_animation;
     }
 
     @Override
-    protected void initView() {
+    public void initView() {
         //Tween Animation
         mScaleButton = findViewById(R.id.btn_scale_anim);
         mScaleButton.setOnClickListener(this);
@@ -69,7 +74,7 @@ public class AnimationActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         //Tween Animation
         scaleAnim = AnimationUtils.loadAnimation(mContext, R.anim.cool_scale);
         alphaAnim = AnimationUtils.loadAnimation(mContext, R.anim.cool_alpha);

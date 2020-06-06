@@ -2,10 +2,8 @@ package com.nttn.coolandroid.learndata.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.storage.StorageManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +15,7 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.util.FileUtils;
 import com.nttn.coolandroid.R;
+import com.nttn.coolandroid.activity.BaseHeadActivity;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -37,7 +36,7 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.DIRECTORY_PODCASTS;
 import static android.os.Environment.DIRECTORY_RINGTONES;
 
-public class DataStorageActivity extends AppCompatActivity implements View.OnClickListener {
+public class DataStorageActivity extends BaseHeadActivity implements View.OnClickListener {
 
     private static final String TAG = "DataStorageActivity";
     private ListView mLVDataFiles;
@@ -76,11 +75,37 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data_storage);
-        initView();
-        initData();
+    public int getTitleResId() {
+        return R.string.learn_data_storage;
+    }
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_data_storage;
+    }
+
+    @Override
+    public void initView() {
+        mTVHintTitle = (TextView) findViewById(R.id.tv_data_storage);
+        mLVDataFiles = (ListView) findViewById(R.id.lv_data_file);
+
+        mBtnImages = (Button) findViewById(R.id.btn_data_images);
+        mBtnAudios = (Button) findViewById(R.id.btn_data_audios);
+        mBtnVideos = (Button) findViewById(R.id.btn_data_videos);
+        mBtnDocuments = (Button) findViewById(R.id.btn_data_documents);
+        mBtnArchives = (Button) findViewById(R.id.btn_data_archives);
+        mBtnApps = (Button) findViewById(R.id.btn_data_apps);
+        mBtnDownloads = (Button) findViewById(R.id.btn_data_downloads);
+        mBtnMore = (Button) findViewById(R.id.btn_data_more);
+    }
+
+    @Override
+    public void initData() {
+        mContext = this;
+        aboutFileDir();
+
+        initButtonClickListener();
+
     }
 
     @Override
@@ -136,28 +161,6 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
             default:
                 break;
         }
-    }
-
-    private void initView() {
-        mTVHintTitle = (TextView) findViewById(R.id.tv_data_storage);
-        mLVDataFiles = (ListView) findViewById(R.id.lv_data_file);
-
-        mBtnImages = (Button) findViewById(R.id.btn_data_images);
-        mBtnAudios = (Button) findViewById(R.id.btn_data_audios);
-        mBtnVideos = (Button) findViewById(R.id.btn_data_videos);
-        mBtnDocuments = (Button) findViewById(R.id.btn_data_documents);
-        mBtnArchives = (Button) findViewById(R.id.btn_data_archives);
-        mBtnApps = (Button) findViewById(R.id.btn_data_apps);
-        mBtnDownloads = (Button) findViewById(R.id.btn_data_downloads);
-        mBtnMore = (Button) findViewById(R.id.btn_data_more);
-    }
-
-    private void initData() {
-        mContext = this;
-        aboutFileDir();
-
-        initButtonClickListener();
-
     }
 
     private void initButtonClickListener() {
