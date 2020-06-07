@@ -6,6 +6,7 @@ buildscript {
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         maven {url 'http://maven.aliyun.com/nexus/content/repositories/google'}
         google()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.0'
@@ -22,6 +23,8 @@ allprojects {
         maven {url 'http://maven.aliyun.com/nexus/content/repositories/google'}
         //BaseRecyclerViewAdapterHelper
         maven { url "https://jitpack.io" }
+        google()
+        jcenter()
     }
 }
 
