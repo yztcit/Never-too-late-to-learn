@@ -2,9 +2,12 @@
 >   Java相关姿势学习记录，只要包括 *Java基础*，*Java并发*，*Java虚拟机* 三个部分。
 >资源均来自网络博文，感谢开源！
 
-~Java基础 [^1][java basic]
-~Java并发 [^2][java concurrence]   
-~Java虚拟机 [^3][jvm]  
+`Java基础 [^1][java basic]   
+
+`Java并发 [^2][java concurrence]   
+
+`Java虚拟机 [^3][jvm]   
+
 
 
 ---------
