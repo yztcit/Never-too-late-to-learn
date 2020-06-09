@@ -2,21 +2,17 @@
 > 资源均来自网络博文，感谢开源！
 
 ### 目录
+##### 1.  [Java基础](#1) [^1] 
+##### 1.1. [Java集合框架](#11) 
+##### 1.2. [ArrayList](#12) 
+##### 1.3. [LinkedList](#13) 
+##### 1.4. [HashMap](#14) 
+##### 1.5. [TreeMap](#15) 
+##### 1.6. [LinkedHashMap](#16) 
+##### 2. [Java并发](#2) [^2] 
+##### 3. [Java虚拟机](#3) [^3] 
 
-#####  [1. Java基础](#1) [^1]  
-##### [1.1. Java集合框架](#11) 
-##### [1.2. ArrayList](#12) 
-##### [1.3. LinkedList](#13) 
-##### [1.4. HashMap](#14) 
-##### [1.5. TreeMap](#15) 
-##### [1.6. LinkedHashMap](#16) 
-
-#####  [2. Java并发](#2) [^2]  
-
-##### [3. Java虚拟机](#3) [^3]  
-
-<h3 id="1">1. Java基础</h3>   
-
+<h3 id="1">1. Java基础</h3> 
 <h4 id="11">1.1. Java集合框架    </h4>
 
 Java集合四大体系：`Set` 、`Queue`、`List`、`Map`；   
@@ -33,6 +29,43 @@ Java集合像一个容器，存储对象（实际是对象的引用，习惯上�
 常用的集合实现类有：`HashSet`、`TreeSet`，`ArrayList`、`LinkedList`，`HashMap`、`TreeMap`等。   
 
 <h4 id="12">1.2. ArrayList</h4>
+
+- 以数组实现，总容量有限制（`Integer.MAX_VALUE - 8`， 2147483639）；默认创建大小为10的数值；当容量超限时，会增加50%的容量。
+
+    - 自动扩容的核心方法`ensureCapacityInternal()`，*若扩容50%还是不够的话，会直接扩容到对应需要的大小*。
+
+    ```java
+    private void ensureCapacityInternal(int minCapacity) {
+        if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+            minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
+        }
+        ensureExplicitCapacity(minCapacity);
+    }
+    private void ensureExplicitCapacity(int minCapacity) {
+        modCount++;
+        // overflow-conscious code
+        if (minCapacity - elementData.length > 0)
+            grow(minCapacity);
+    }
+    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+    private void grow(int minCapacity) {
+        // overflow-conscious code
+        int oldCapacity = elementData.length;
+        // 扩展为原来的1.5倍
+        int newCapacity = oldCapacity + (oldCapacity >> 1);
+        // 如果扩为1.5倍还不满足需求，直接扩为需求值
+        if (newCapacity - minCapacity < 0)
+            newCapacity = minCapacity;
+        if (newCapacity - MAX_ARRAY_SIZE > 0)
+            newCapacity = hugeCapacity(minCapacity);
+        // minCapacity is usually close to size, so this is a win:
+        elementData = Arrays.copyOf(elementData, newCapacity);
+    }
+    ```
+
+- 按数组下标访问元素，性能很高。
+
+- 直接在末尾添加数据性能高，但是按照下标在其他位置`add(i, e)`，`remove(i)`，`remove(e)`，需要`System.arraycopy()`来移动受影响的原生，性能变差了。
 
 
 <h4 id="13">1.3. LinkedList</h4>
