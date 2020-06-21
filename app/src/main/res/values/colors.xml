@@ -13,4 +13,12 @@
     <color name="color_common_bg">#EFEFEF</color>
     <color name="color_blue">#465ce7</color>
     <color name="transparent">#00000000</color>
+
+    <color name="color_calendar_can_not_select">#dedede</color>
+    <color name="color_calendar_can_select">#333333</color>
+    <color name="color_calendar_select">#ffffff</color>
+    <color name="color_calendar_today">#F67332</color>
+    <color name="color_calendar_background_select">#2E59C3</color>
+    <color name="color_calendar_background_select_range">#ffecf2ff</color>
+    <color name="color_calendar_background_normal">#ffffff</color>
 </resources>

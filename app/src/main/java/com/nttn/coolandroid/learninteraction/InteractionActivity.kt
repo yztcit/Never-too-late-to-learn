@@ -5,10 +5,9 @@ import android.os.Bundle;
 
 import com.nttn.coolandroid.R;
 
-public class InteractionActivity extends AppCompatActivity {
+class InteractionActivity : AppCompatActivity() {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interaction);
     }

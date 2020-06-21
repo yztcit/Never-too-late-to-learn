@@ -16,6 +16,11 @@ public class OnActResultEventDispatcherFragment extends Fragment {
         setRetainInstance(true);
     }
 
+    public void requestPermissions(int requestCode, ActResultRequest.Callback callback, String... permissions) {
+        mCallbacks.put(requestCode, callback);
+        requestPermissions(permissions, requestCode);
+    }
+
     public void startForResult(Intent intent, int requestCode, ActResultRequest.Callback callback) {
         // mRequestCode与callback需要一一对应
         mCallbacks.put(requestCode, callback);
