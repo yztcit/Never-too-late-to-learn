@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+//编译插桩
+//apply plugin: rootProject.ext.asmPluginName
+
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -10,6 +14,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+        //multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -33,7 +38,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -41,12 +46,13 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'junit:junit:4.12'
     implementation 'com.android.support:design:28.0.0'
-    implementation 'com.blankj:utilcode:1.14.0'//a github open util
-    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.blankj:utilcode:1.17.3'//a github open util
+    implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'org.greenrobot:greendao:3.3.0'
     //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41'
     implementation 'com.google.zxing:core:3.4.0'
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    //implementation 'com.android.support:multidex:1.0.3'
 }

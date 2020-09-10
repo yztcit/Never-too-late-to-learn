@@ -8,24 +8,35 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.nttn.coolandroid.R;
+import com.nttn.coolandroid.activity.BaseHeadActivity;
 
-public class SecondActivity extends AppCompatActivity implements View.OnClickListener{
+/**1.四大组件学习*/
+public class SecondActivity extends BaseHeadActivity implements View.OnClickListener{
     private TextView desc;
     private Button secondButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
-        initView();
+    public int getTitleResId() {
+        return R.string.learn_component;
     }
 
-    private void initView() {
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_second;
+    }
+
+    @Override
+    public void initView() {
         desc = findViewById(R.id.desc_second);
         desc.setText(this.toString());
 
         secondButton = findViewById(R.id.btn_second);
         secondButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     @Override

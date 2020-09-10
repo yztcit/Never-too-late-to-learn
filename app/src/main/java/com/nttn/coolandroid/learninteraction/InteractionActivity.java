@@ -1,19 +1,20 @@
-package com.nttn.coolandroid.learnmedia;
+package com.nttn.coolandroid.learninteraction;
 
 import com.nttn.coolandroid.R;
 import com.nttn.coolandroid.activity.BaseHeadActivity;
 
-/** 8.多媒体与相机学习 */
-public class MediaActivity extends BaseHeadActivity {
-
+/**
+ * 3.友好交互学习
+ */
+public class InteractionActivity extends BaseHeadActivity {
     @Override
     public int getTitleResId() {
-        return R.string.learn_media_camera;
+        return R.string.learn_interaction;
     }
 
     @Override
     public int getContentViewId() {
-        return R.layout.activity_media;
+        return R.layout.activity_interaction;
     }
 
     @Override

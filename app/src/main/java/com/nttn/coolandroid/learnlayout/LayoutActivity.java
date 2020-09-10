@@ -1,15 +1,28 @@
 package com.nttn.coolandroid.learnlayout;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.nttn.coolandroid.R;
+import com.nttn.coolandroid.activity.BaseHeadActivity;
 
-public class LayoutActivity extends AppCompatActivity {
+/** 2.四大布局学习 */
+public class LayoutActivity extends BaseHeadActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout);
+    public int getTitleResId() {
+        return R.string.learn_layout;
+    }
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_layout;
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initData() {
+
     }
 }

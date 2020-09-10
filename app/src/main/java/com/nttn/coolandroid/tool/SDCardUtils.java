@@ -97,8 +97,8 @@ public class SDCardUtils {
                 .getSystemService(Context.STORAGE_SERVICE);
         try {
             Method getPathsMethod = sm.getClass().getMethod("getVolumePaths",
-                    null);
-            String[] path = (String[]) getPathsMethod.invoke(sm, null);
+                    (Class<?>) null);
+            String[] path = (String[]) getPathsMethod.invoke(sm, (Object) null);
 
             switch (type) {
                 case INTERNAL_STORAGE:
