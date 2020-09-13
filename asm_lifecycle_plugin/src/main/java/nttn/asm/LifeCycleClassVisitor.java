@@ -30,7 +30,10 @@ public class LifeCycleClassVisitor extends ClassVisitor {
         //System.out.println("ClassVisitor visitMethod----> " + name + ", superName is " + superName);
 
         MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
-        if ("android/support/v7/app/AppCompatActivity".equals(superName)) {
+        if ("android/support/v7/app/AppCompatActivity".equals(superName)
+                || "android/support/v4/FragmentActivity".equals(superName)
+                /*|| "android/app/Activity".equals(superName)*/) {
+            System.out.println("ClassVisitor visitMethod----> " + name + ", superName is " + superName);
             if ("onCreate".equals(name)) {
                 //处理 onCreate() 方法
                 return new LifeCycleMethodVisitor(mv, className, name);

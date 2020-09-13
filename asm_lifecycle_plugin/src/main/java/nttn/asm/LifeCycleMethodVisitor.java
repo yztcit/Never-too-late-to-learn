@@ -13,11 +13,6 @@ public class LifeCycleMethodVisitor extends MethodVisitor {
     private String className;
     private String methodName;
 
-
-    public static final String owner = "android/util/Log";
-    public static final String name = "i";
-    public static final String descriptor = "(Ljava/lang/String/;Ljava/lang/String;)I";
-
     public LifeCycleMethodVisitor(MethodVisitor methodVisitor, String className, String methodName) {
         super(Opcodes.ASM5, methodVisitor);
         this.className = className;
@@ -27,12 +22,12 @@ public class LifeCycleMethodVisitor extends MethodVisitor {
     @Override
     public void visitCode() {
         super.visitCode();
-        //System.out.println("========== MethodVisitor visit ==========");
+        System.out.println("MethodVisitor visit ===> " + className + ", "+ methodName);
 
         //方法执行前插入代码
-        mv.visitLdcInsn("TAG");
+        mv.visitLdcInsn("LifeCycle");
         mv.visitLdcInsn(className + " ----> " + methodName);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, owner, name, descriptor, false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "android/util/Log", "d", "(Ljava/lang/String;Ljava/lang/String;)I", false);
         mv.visitInsn(Opcodes.POP);
 
     }

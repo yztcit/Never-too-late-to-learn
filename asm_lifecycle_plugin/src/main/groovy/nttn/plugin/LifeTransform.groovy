@@ -29,7 +29,7 @@ public class LifeTransform extends Transform {
      */
     @Override
     String getName() {
-        return "LifeCycleTransform"
+        return "LifeTransform"
     }
 
     /**
@@ -94,24 +94,25 @@ public class LifeTransform extends Transform {
     @Override
     void transform(TransformInvocation transformInvocation)
             throws TransformException, InterruptedException, IOException {
-        //super.transform(transformInvocation)
         //获取所有的文件
         Collection<TransformInput> transformInputs = transformInvocation.inputs
 
-        TransformOutputProvider outputProvider = transformInvocation.outputProvider
+        /*TransformOutputProvider outputProvider = transformInvocation.outputProvider
         if (outputProvider != null) {
             outputProvider.deleteAll()
-        }
+        }*/
 
         //遍历directoryInputs(文件夹中的class文件)
         transformInputs.each { TransformInput transformInput ->
+            // 遍历directoryInputs(文件夹中的class文件) directoryInputs代表着以源码方式参与项目编译的所有目录结构及其目录下的源码文件
+            // 比如我们手写的类以及R.class、BuildConfig.class以及MainActivity.class等
             transformInput.directoryInputs.each { DirectoryInput directoryInput ->
                 File dir = directoryInput.file
                 if (dir) {
                     dir.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) { File file ->
-                        //System.out.println("find class---> " + file.name)
+                        System.out.println("find class---> " + file.name)
 
-                        //对class文件进行读取与解析
+                       /* //对class文件进行读取与解析
                         ClassReader classReader = new ClassReader(file.bytes)
                         //对class文件的写入
                         ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
@@ -121,21 +122,22 @@ public class LifeTransform extends Transform {
                         classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
                         //toByteArray方法会将最终修改的字节码以byte数组形式返回
                         byte[] bytes = classWriter.toByteArray()
+
                         //通过文件流写入方法覆盖原先的内容，实现class文件的改写
                         FileOutputStream outputStream = new FileOutputStream(file.path)
                         outputStream.write(bytes)
-                        outputStream.close()
+                        outputStream.close()*/
 
                     }
                 }
-                //处理完输入文件后把输出传给下一个文件
-                def  dest = outputProvider.getContentLocation(
+               /* //处理完输入文件后把输出传给下一个文件
+                def dest = outputProvider.getContentLocation(
                         directoryInput.name,
                         directoryInput.contentTypes,
                         directoryInput.scopes,
                         Format.DIRECTORY
                 )
-                FileUtils.copyDirectory(directoryInput.file, dest)
+                FileUtils.copyDirectory(directoryInput.file, dest)*/
             }
         }
     }

@@ -1,17 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
 
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
-//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-    }
-}
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // 包含了AMS字节码注入工具
@@ -25,21 +14,14 @@ dependencies {
     implementation 'org.ow2.asm:asm-commons:7.1'
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
 uploadArchives {
     repositories {
         mavenDeployer {
-            pom.groupId = 'nttn.lifecycle.plugin'
-            pom.artifactId = 'asm-plugin'
-            pom.version = '1.0.1'
+            pom.groupId = 'nttn.plugin'
+            pom.artifactId = 'lifecycle-asm'
+            pom.version = '1.0.0'
             //本地的Maven地址设置
-            repository(url: uri('../asm_lifecycle_repo101'))
+            repository(url: uri('../asm_lifecycle'))
         }
     }
 }
