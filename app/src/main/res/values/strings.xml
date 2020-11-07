@@ -57,6 +57,10 @@
     <!--编号9: ui advanced-->
     <string name="ui_drag">拖拽、侧滑展示</string>
     <string name="ui_html_tag">Load Html Tag</string>
+    <string name="ui_signature">手写签名</string>
+    <string name="ui_clear_signature">清除签名</string>
+    <string name="ui_complete_signature">完成签名</string>
+    <string name="ui_flipper">翻页效果</string>
 
     <!--j编号11：多线程通信-->
     <string name="ipc_aidl">AIDL Practice</string>

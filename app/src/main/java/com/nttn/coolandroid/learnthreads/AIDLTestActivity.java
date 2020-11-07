@@ -54,6 +54,11 @@ public class AIDLTestActivity extends BaseHeadActivity {
             //获取AIDL接口实例引用
             remoteService = IRemoteService.Stub.asInterface(service);
             try {
+                service.linkToDeath(mDeathRecipient, 0);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            try {
                 int clientPid = Process.myPid();
                 int remoteServicePid = remoteService.getPid();
                 String msg = "Client pid = " + clientPid + "\nRemoteService pid = " + remoteServicePid;
@@ -66,6 +71,17 @@ public class AIDLTestActivity extends BaseHeadActivity {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             LogUtil.e(TAG, "RemoteService has unexpectedly disconnected");
+            remoteService = null;
+        }
+    };
+
+    //死亡代理
+    private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            if (remoteService == null) return;
+
+            remoteService.asBinder().unlinkToDeath(mDeathRecipient, 0);
             remoteService = null;
         }
     };

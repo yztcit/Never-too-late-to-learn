@@ -1,5 +1,6 @@
 package com.nttn.coolandroid.learnui.uiadvance;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,7 +11,9 @@ import com.nttn.coolandroid.activity.BaseHeadActivity;
 
 public class UIAdvancedActivity extends BaseHeadActivity {
     private ListView uiListView;
-    private String[] chapterStr = new String[]{"拖拽效果", "侧滑删除", "侧滑列表", "测试TextView加载HTML"};
+    private final String[] chapterStr = new String[]{
+            "拖拽效果", "侧滑删除", "侧滑列表", "测试TextView加载HTML", "手写签名", "翻页效果"
+    };
 
     @Override
     public int getTitleResId() {
@@ -34,13 +37,24 @@ public class UIAdvancedActivity extends BaseHeadActivity {
         uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == chapterStr.length - 1) {
-                    HtmlTagActivity.actionStart(mContext);
-                    return;
+                switch (chapterStr[position]) {
+                    case "拖拽效果":
+                    case "侧滑删除":
+                    case "侧滑列表":
+                        boolean[] menuSettings = new boolean[position + 1];
+                        menuSettings[position] = true;
+                        DragDemoActivity.actionStart(mContext, menuSettings);
+                        break;
+                    case "测试TextView加载HTML":
+                        HtmlTagActivity.actionStart(mContext);
+                        break;
+                    case "翻页效果":
+                        startActivity(new Intent(mContext, FlipperActivity.class));
+                        break;
+                    case "手写签名":
+                        startActivity(new Intent(mContext, SignatureActivity.class));
+                        break;
                 }
-                boolean[] menuSettings = new boolean[position + 1];
-                menuSettings[position] = true;
-                DragDemoActivity.actionStart(mContext, menuSettings);
             }
         });
     }

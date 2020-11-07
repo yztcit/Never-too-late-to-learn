@@ -154,6 +154,12 @@
         <activity
             android:name="com.nttn.coolandroid.learnui.uiadvance.HtmlTagActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.nttn.coolandroid.learnui.uiadvance.SignatureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.nttn.coolandroid.learnui.uiadvance.FlipperActivity"
+            android:screenOrientation="portrait" />
         <activity android:name="com.nttn.coolandroid.learncomponent.rxpractise.RxActivity"
             android:process=":com.chen.coolandroid.rxpractise"
             android:screenOrientation="portrait"/>

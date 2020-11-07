@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.nttn.coolandroid.custom.SignatureView
+        android:id="@+id/signature_view"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+    <Button
+        android:id="@+id/btn_clear_signature"
+        android:text="@string/ui_clear_signature"
+        android:textColor="@color/color_white"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/shape_rect_radius_4_fill_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_complete_signature"
+        android:text="@string/ui_complete_signature"
+        android:textColor="@color/color_white"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/shape_rect_radius_4_fill_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
