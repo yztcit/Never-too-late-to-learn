@@ -4,8 +4,9 @@
         <attr name="flip_color" format="color"/>
         <attr name="flip_duration" format="integer"/>
         <attr name="flip_arrow_color" format="color"/>
-        <attr name="flip_drag_width" format="dimension"/>
+        <attr name="flip_arrow_width" format="dimension"/>
         <attr name="flip_arrow_stroke_width" format="dimension"/>
+        <attr name="flip_offset_scale" format="float"/>
         <attr name="flip_anim_type" >
             <flag name="Linear"     value="0" /><!--以常量速率改变-->
             <flag name="Decelerate" value="1" /><!--在动画开始的地方快然后慢-->

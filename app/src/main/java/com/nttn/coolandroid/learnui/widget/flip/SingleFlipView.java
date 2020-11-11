@@ -1,5 +1,7 @@
 package com.nttn.coolandroid.learnui.widget.flip;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -73,6 +75,7 @@ public class SingleFlipView extends View {
     private int defaultDragWidth = 30;// 默认箭头的宽度
     private float dragWidth;//箭头动态宽度
     private float animDragWidth;//用于动画过渡
+    private float offsetScale = 0.5f;
 
     private ValueAnimator upAnimator;//松手回弹动画
     private Interpolator interpolator = new LinearInterpolator();//默认松手回弹动画
@@ -122,10 +125,11 @@ public class SingleFlipView extends View {
 
         arrowColor = typedArray.getColor(R.styleable.SingleFlipView_flip_arrow_color, arrowColor);
         arrowStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.SingleFlipView_flip_arrow_stroke_width, arrowStrokeWidth);
-        defaultDragWidth = typedArray.getDimensionPixelSize(R.styleable.SingleFlipView_flip_drag_width, defaultDragWidth);
+        defaultDragWidth = typedArray.getDimensionPixelSize(R.styleable.SingleFlipView_flip_arrow_width, defaultDragWidth);
+
+        offsetScale = typedArray.getFloat(R.styleable.SingleFlipView_flip_offset_scale, offsetScale);
 
         duration = typedArray.getInt(R.styleable.SingleFlipView_flip_duration, defaultDuration);
-
         int animType = typedArray.getInt(R.styleable.SingleFlipView_flip_anim_type, 0);
         interpolator = interpolatorList.get(animType);
 
@@ -164,6 +168,22 @@ public class SingleFlipView extends View {
         upAnimator = ValueAnimator.ofFloat(1f, 0f);
         upAnimator.setInterpolator(interpolator);
         upAnimator.setDuration(duration);
+        upAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                super.onAnimationCancel(animation);
+                LogUtil.d(TAG, "animation cancel");
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                LogUtil.d(TAG, "animation end");
+                if (flipperListener != null) {
+                    flipperListener.onFlip(direction == LEFT);
+                }
+            }
+        });
         upAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -184,7 +204,7 @@ public class SingleFlipView extends View {
         center_x = w / 2;
         center_y = h / 2;
 
-        LogUtil.e(TAG, "sizeChanged center >>> (" + center_x + "," + center_y + ")");
+        LogUtil.d(TAG, "sizeChanged center >>> (" + center_x + "," + center_y + ")");
     }
 
     @Override
@@ -246,7 +266,7 @@ public class SingleFlipView extends View {
 
         if (offsetX >= center_x) offsetX = center_x;
 
-        dragWidth = offsetX * 0.5f;
+        dragWidth = offsetX * offsetScale;
     }
 
     /**
@@ -324,5 +344,14 @@ public class SingleFlipView extends View {
 
         point7.x = origin_x;//origin_x, current_y + 150
         point7.y = current_y + 3 * dragWidth;
+    }
+
+    public interface FlipperListener {
+        void onFlip(boolean towardLeft);
+    }
+
+    private FlipperListener flipperListener;
+    public void setFlipperListener(FlipperListener flipperListener) {
+        this.flipperListener = flipperListener;
     }
 }
