@@ -2,11 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
-        android:gravity="center"
-        android:text="@string/ui_flipper"
+    <com.nttn.coolandroid.learnui.widget.flip.SingleFlipView
+        android:id="@+id/flip"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:flip_duration="900"
+        app:flip_anim_type="Bounce"
+        app:flip_drag_width="@dimen/dp_10"
+        app:flip_arrow_stroke_width="1dp"
+        app:flip_color="@color/colorPrimaryDark"
+        app:flip_arrow_color="@color/color_white"/>
 </LinearLayout>
