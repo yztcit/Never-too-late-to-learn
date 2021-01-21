@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -41,10 +40,6 @@ import java.util.List;
 public class SingleFlipView extends View {
     private static final String TAG = "DemoFlipView";
 
-    private static final int LEFT = -1;
-    private static final int RIGHT = 1;
-    private int direction = 0;
-
     private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int paintColor = Color.parseColor("#88000000");
     private final Path mPath = new Path();
@@ -56,21 +51,8 @@ public class SingleFlipView extends View {
 
     private int center_x = 540, center_y = 960;
 
-    /**
-     * 贝赛尔曲线各点
-     */
-    private final PointF pointOrigin = new PointF(0, 0);//起始手指按下的点
-    private final PointF pointFinger = new PointF(0, 0);//手指按下位置
-
-    private final PointF point1 = new PointF(0, 0);
-    private final PointF point2 = new PointF(0, 0);
-    private final PointF point3 = new PointF(0, 0);
-
-    private final PointF point4 = new PointF(0, 0);
-
-    private final PointF point5 = new PointF(0, 0);
-    private final PointF point6 = new PointF(0, 0);
-    private final PointF point7 = new PointF(0, 0);
+    /* 绘制点及移动方向管理 */
+    private CubicPointsManager mPointsManager;
 
     private int defaultDragWidth = 30;// 默认箭头的宽度
     private float dragWidth;//箭头动态宽度
@@ -92,13 +74,11 @@ public class SingleFlipView extends View {
     }
 
     public SingleFlipView(Context context) {
-        super(context);
-        init(context, null);
+        this(context, null);
     }
 
     public SingleFlipView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init(context, attrs);
+        this(context, attrs, 0);
     }
 
     public SingleFlipView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -116,6 +96,8 @@ public class SingleFlipView extends View {
 
         //松手，动画回弹
         initUpAnimator();
+
+        mPointsManager = new CubicPointsManager(mPath, mArrowPath, center_x, center_y, defaultDragWidth);
     }
 
     private void initAttrs(Context context, @Nullable AttributeSet attrs) {
@@ -180,7 +162,7 @@ public class SingleFlipView extends View {
                 super.onAnimationEnd(animation);
                 LogUtil.d(TAG, "animation end");
                 if (flipperListener != null) {
-                    flipperListener.onFlip(direction == LEFT);
+                    flipperListener.onFlip(mPointsManager.isTowardLeft());
                 }
             }
         });
@@ -191,7 +173,7 @@ public class SingleFlipView extends View {
                 float value = (float) animation.getAnimatedValue();
                 dragWidth = animDragWidth * value;
 
-                updatePointLocation();
+                mPointsManager.updatePointLocation(dragWidth);
                 invalidate();
             }
         });
@@ -227,21 +209,18 @@ public class SingleFlipView extends View {
         float current_y = event.getY();
 
         // 记录手指移动的位置
-        pointFinger.x = current_x;
-        pointFinger.y = current_y;
+        mPointsManager.updatePointFinger(current_x, current_y);
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 if (upAnimator.isRunning()) upAnimator.cancel();
 
                 // down事件记录下按下初始位置，后续判断偏移距离和方向
-                pointOrigin.x = current_x;
-                pointOrigin.y = current_y;
+                mPointsManager.updatePointOrigin(current_x, current_y);
                 break;
             case MotionEvent.ACTION_MOVE:
-                judgeDirectionAndOffsetX(current_x);
+                updateOnMove();
 
-                updatePointLocation();
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
@@ -253,20 +232,15 @@ public class SingleFlipView extends View {
         return true;
     }
 
-    private void judgeDirectionAndOffsetX(float current_x) {
+    private void updateOnMove() {
         // x move offset
-        float offsetX = Math.abs(current_x - pointOrigin.x);
-
-        // → toward right
-        if (current_x > pointOrigin.x) {
-            direction = RIGHT;
-        } else {// ←
-            direction = LEFT;
-        }
+        float offsetX = Math.abs(mPointsManager.getXOffset());
 
         if (offsetX >= center_x) offsetX = center_x;
 
         dragWidth = offsetX * offsetScale;
+
+        mPointsManager.updateOnMove(dragWidth);
     }
 
     /**
@@ -275,75 +249,17 @@ public class SingleFlipView extends View {
      * @param canvas 画布
      */
     private void drawFlipWave(Canvas canvas) {
-        float origin_x = direction == LEFT ? 2 * center_x : 0;
-
-        mPath.lineTo(point1.x, 0);
-        mPath.lineTo(point1.x, point1.y);
-
-        //绘制贝赛尔曲线
-        mPath.cubicTo(point2.x, point2.y, point3.x, point3.y, point4.x, point4.y);
-
-        mPath.cubicTo(point5.x, point5.y, point6.x, point6.y, point7.x, point7.y);
-
-        mPath.lineTo(point7.x, center_y * 2);
-        mPath.lineTo(origin_x, center_y * 2);
-        mPath.close();
+        mPointsManager.drawCubic();
 
         //移动一段距离后(3 * defaultDragWidth)，显示箭头
-        if (Math.abs(point4.x - origin_x) > 3f * defaultDragWidth) {
-            float circleCenterX = point4.x - 1.5f * defaultDragWidth * direction;
-
-            mArrowPath.moveTo(circleCenterX - 0.3f * defaultDragWidth * direction, point4.y - 0.66f * defaultDragWidth);
-            mArrowPath.lineTo(circleCenterX + 0.6f * defaultDragWidth * direction, point4.y);
-            mArrowPath.lineTo(circleCenterX - 0.3f * defaultDragWidth * direction, point4.y + 0.66f * defaultDragWidth);
-
-            mArrowPath.addCircle(circleCenterX, point4.y, defaultDragWidth, Path.Direction.CCW);
-        }
+        mPointsManager.drawArrow();
 
         canvas.drawPath(mPath, mPaint);
         canvas.drawPath(mArrowPath, mArrowPaint);
+
         //绘制完当前路径，删除之前的路径
         mPath.reset();
         mArrowPath.reset();
-    }
-
-    /**
-     * 刷新各绘制点的位置
-     * <p>
-     * direction 移动方向: ← {@link SingleFlipView#LEFT}；→ {@link SingleFlipView#RIGHT}
-     */
-    private void updatePointLocation() {
-        float origin_x = direction == LEFT ? 2 * center_x : 0;
-        float current_y = pointFinger.y;
-
-        mPath.moveTo(origin_x, 0);
-
-        //p1(0,0), p2(0,100)，p3(90,75)，p4(98,150)
-        // p1(origin_x,currentY - 150), p2(origin_x, currentY - 50),
-        // p3(origin_x + 90, currentY - 75), p4(origin_x + 98, currentY)
-        point1.x = origin_x;
-        point1.y = current_y - 3 * dragWidth;
-
-        point2.x = origin_x;//origin_x, current_y - 50
-        point2.y = current_y - dragWidth;
-
-        point3.x = origin_x + 1.8f * dragWidth * direction;//origin_x + 90, current_y - 75
-        point3.y = current_y - 1.5f * dragWidth;
-
-        point4.x = origin_x + 1.93f * dragWidth * direction;//origin_x + 100, current_y
-        point4.y = current_y;
-
-        //p1(98, 150), p2(90, 225), p3(0, 200), p4(0, 300)
-        // p1(origin_x + 98, currentY), p2(origin_x + 90, currentY + 75),
-        // p3(origin_x, currentY + 50), p4(origin_x, currentY + 150)
-        point5.x = origin_x + 1.8f * dragWidth * direction;//origin_x + 90, current_y + 75
-        point5.y = current_y + 1.5f * dragWidth;
-
-        point6.x = origin_x;//origin_x, current_y + 50
-        point6.y = current_y + dragWidth;
-
-        point7.x = origin_x;//origin_x, current_y + 150
-        point7.y = current_y + 3 * dragWidth;
     }
 
     public interface FlipperListener {

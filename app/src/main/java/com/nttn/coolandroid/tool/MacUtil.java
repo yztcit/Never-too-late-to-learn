@@ -17,8 +17,9 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 public class MacUtil {
-    public static String getMac(Context context) {
-        String strMac = null;
+    public static String getMac(Context ctx) {
+        Context context = ctx.getApplicationContext();
+        String strMac;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             //6.0以下;
             strMac = getLocalMacAddressFromWifiInfo(context);
