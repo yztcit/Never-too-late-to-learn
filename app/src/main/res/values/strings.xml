@@ -61,8 +61,9 @@
     <string name="ui_clear_signature">清除签名</string>
     <string name="ui_complete_signature">完成签名</string>
     <string name="ui_flipper">翻页效果</string>
+    <string name="ui_capture">OCR 第一步</string>
 
-    <!--j编号11：多线程通信-->
+    <!--编号11：多线程通信-->
     <string name="ipc_aidl">AIDL Practice</string>
     <string name="threads_sync">多线程-同步</string>
 </resources>

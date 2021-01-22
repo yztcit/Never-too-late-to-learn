@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="20dp"
+    android:paddingLeft="28dp"
+    android:paddingRight="28dp"
+    android:background="#000">
+
+    <TextView
+        android:id="@+id/tv_captured_desc"
+        android:text="Before we go to the next step, please \n make sure your Card photo is clear."
+        android:textSize="16sp"
+        android:textColor="@color/color_white"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_captured_desc">
+
+        <Button
+            android:id="@+id/btn_captured_retake"
+            android:text="Retake"
+            android:textSize="16sp"
+            android:textColor="@color/color_white"
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/shape_captured_btn_retake"/>
+
+        <Button
+            android:id="@+id/btn_captured_submit"
+            android:text="Submit"
+            android:textSize="16sp"
+            android:textColor="@color/color_white"
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_captured_btn_submit"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

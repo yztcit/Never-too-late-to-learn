@@ -2,29 +2,35 @@
 > 放弃幻想，准备斗争！
 
 ------------
-### 一、Android
-#### 1. Android 基础
-##### 1.1. UI
-
-##### 1.1.1. 触摸事件的分发
+## 一、Android
+### 1. Android 基础
+#### 1.1. UI
+#### 1.1.1. 触摸事件的分发
 - 被分发的对象：**触摸屏幕产生的点击事件**，被包装为 `MotionEvent`；
 - 事件的动作：按下（`Down`）、滑动（`Move`）、抬起（`Up`）、取消（`Cancel`）；
 - 分发者：`Activity`、`ViewGroup`、`View`；
 - 分发过程涉及的方法：`dispatchTouchEvent()`、`onInteceptTouchEvent()`、`onTouchEvent()`、`requestDisallowInterceptTouchEvent()`;
 
 
-#### 2. Android 进阶
+### 2. Android 进阶
+#### 2.1 自定义
+#### 2.1.1 自定义View
+#### 2.1.1 自定义ViewGroup
+#### 2.1.3 自定义相机
+- Camera：5.0之前的`Camera1`、5.0之后的`Camera2`，通过`Parameters`设置相机参数（预览及拍照图像、对焦、方向等）；
+- SurfaceView：展示`Surface`数据，持有`SurfaceHolder`；
+- SurfaceHolder：通过`SurfaceCallback`监听`Surface`的动作；
+- PictureCallback：`camera#takePicture()`回调原始图片data（byte[]）。
 
-
-#### 3. 开源框架
+### 3. 开源框架
 
 ------------
 
 
 
 ------------
-### 二、Gradle自动化构建
-#### 1.  简介
+## 二、Gradle自动化构建
+### 1.  简介
 Gradle不仅仅是一款强大的构建工具，看起来更像一个编程框架。其组成可以细分为如下三方面：
 1. Groovy核心语法：包括 Groovy 基本语法、闭包、数据结构、面向对象等；
 2. Android DSL（build script block）：Android所特有的，我们按 block 块来处理业务；
@@ -36,7 +42,7 @@ Gradle 的语法是以 Groovy 为基础的，同时它还有自己的API。
 
 > Groovy 是一门语言，而 DSL 是一种特定领域的配置文件，Gradle 是基于 Groovy 的一种框架工具，而 gradlew 则是 gradle 的一个兼容包装工具。
 
-#### 2. 构建过程
+### 2. 构建过程
 Gradle 的构建过程分为三个阶段：**初始化**、**配置**、**执行**。
 
 
@@ -53,12 +59,12 @@ Gradle 的构建过程分为三个阶段：**初始化**、**配置**、**执行
 
 
 ---------
-### 三、踩坑记录：
-#### 1. AndroidManifest
+## 三、踩坑记录：
+### 1. AndroidManifest
 - activity label属性中文设置时报manifest编码不规范错误；----> 通过strings引入
 
 
-#### 2. Build
+### 2. Build
 - as 直接run到手机时会默认添加testOnly=true 属性，这会导致某些机型没法直接安装调试 ----> gradle.properties  中添加android.injected.testOnly=false
 
 ---------

@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
@@ -149,6 +150,18 @@ public class DisplayUtil {
         NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetInfo != null
                 && activeNetInfo.getType() == ConnectivityManager.TYPE_WIFI;
+    }
+
+    /**
+     * 检测摄像头设备是否可用
+     * Check if this device has a camera
+     * @param context 上下文
+     * @return true this device has a camera
+     */
+    public static boolean checkCameraHardware(Context context) {
+        // true: this device has a camera
+        // false: no camera on this device
+        return context != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
     }
 
     public static void executeInThread(Runnable runnable) {
