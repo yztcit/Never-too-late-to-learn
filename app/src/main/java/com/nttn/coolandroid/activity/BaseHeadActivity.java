@@ -134,4 +134,12 @@ public abstract class BaseHeadActivity extends AppCompatActivity implements IBas
     public Toolbar getToolbar(){
         return toolbar;
     }
+
+    public View getRootView() {
+        return ((ViewGroup)findViewById(android.R.id.content)).getChildAt(0);
+    }
+
+    public View getContentView() {
+        return ((ViewGroup)findViewById(R.id.rootView)).getChildAt(0);
+    }
 }

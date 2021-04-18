@@ -9,10 +9,15 @@ import android.widget.ListView;
 import com.nttn.coolandroid.R;
 import com.nttn.coolandroid.activity.BaseHeadActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class UIAdvancedActivity extends BaseHeadActivity {
     private ListView uiListView;
     private final String[] chapterStr = new String[]{
-            "拖拽效果", "侧滑删除", "侧滑列表", "测试TextView加载HTML", "手写签名", "翻页效果", "OCR第一步"
+            "拖拽效果", "侧滑删除", "侧滑列表", "测试TextView加载HTML", "手写签名", "翻页效果",
+            "OCR第一步", "仿微信语音"
     };
 
     @Override
@@ -56,6 +61,9 @@ public class UIAdvancedActivity extends BaseHeadActivity {
                         break;
                     case "OCR第一步":
                         startActivity(new Intent(mContext, CaptureActivity.class));
+                        break;
+                    case "仿微信语音":
+                        startActivity(new Intent(mContext, AudioRecordActivity.class));
                         break;
                 }
             }

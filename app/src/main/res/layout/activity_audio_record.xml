@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.nttn.coolandroid.learnui.widget.audiorecord.AudioRecordPresenter" />
+        <variable
+            name="recordPresenter"
+            type="AudioRecordPresenter" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_record_start"
+            android:text="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{recordPresenter::startRecord}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_record_stop"
+            android:text="stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{recordPresenter::stopRecord}"
+            app:layout_constraintStart_toEndOf="@+id/btn_record_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_record_play"
+            android:text="play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{recordPresenter::playRecord}"
+            app:layout_constraintStart_toEndOf="@+id/btn_record_stop"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
