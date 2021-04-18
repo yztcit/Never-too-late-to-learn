@@ -593,6 +593,84 @@ MVVM 的目标和思想与 MVP 类似，利用**数据绑定**(Data Binding)、*
 
 
 
+#### 2.4.4 Android Jetpack AAC
+
+> Jetpack 是一个由多个库组成的套件，可帮助开发者遵循最佳做法，减少样板代码并编写可在各种 Android 版本和设备中一致运行的代码，让开发者精力集中编写重要的代码。
+>
+> Android Architecture Component（AAC）， 即**Android架构组件**。
+
+Jetpack MVVM 推荐架构：
+
+<img src="https://upload-images.jianshu.io/upload_images/5777290-41d63e72a0e0fa86.image?imageMogr2/auto-orient/strip|imageView2/2/w/960/format/webp" alt="Jetpack MVVM" style="zoom: 67%;" />
+
+##### 2.4.4.1 Lifecycle [^1]
+
+> 协助开发者管理 `Activity` 和  `Fragment`生命周期，是 LiveData 和 ViewModel 的基石。
+
+```java
+// 引入依赖
+// 非AndroidX
+implementation "android.arch.lifecycle:extensions:1.1.1"
+// AndroidX
+// appcompat依赖了androidx.fragment，而androidx.fragment下依赖了ViewModel和 LiveData，LiveData内部又依赖了Lifecycle。
+implementation 'androidx.appcompat:appcompat:1.2.0'
+```
+
+单独引用
+
+```java
+//根目录的 build.gradle
+    repositories {
+        google()
+        ...
+    }
+
+//app的build.gradle
+    dependencies {
+        def lifecycle_version = "2.2.0"
+        def arch_version = "2.1.0"
+
+        // ViewModel
+        implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+        // LiveData
+        implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+        // 只有Lifecycles (不带 ViewModel or LiveData)
+        implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    
+        // Saved state module for ViewModel
+        implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
+        // lifecycle注解处理器
+        annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+        // 替换 - 如果使用Java8,就用这个替换上面的lifecycle-compiler
+        implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    //以下按需引入
+        // 可选 - 帮助实现Service的LifecycleOwner
+        implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
+        // 可选 - ProcessLifecycleOwner给整个 app进程 提供一个lifecycle
+        implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+        // 可选 - ReactiveStreams support for LiveData
+        implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+        // 可选 - Test helpers for LiveData
+        testImplementation "androidx.arch.core:core-testing:$arch_version"
+    }
+```
+
+
+
+##### 2.4.4.2 LiveData [^2]
+
+
+
+##### 2.4.4.3 ViewModel [^3]
+
+
+
+##### 2.4.4.4 DataBinding [^4]
+
+
+
 ## 3. 开源框架
 
 ------------
@@ -639,3 +717,11 @@ Gradle 的构建过程分为三个阶段：**初始化**、**配置**、**执行
 - as 直接run到手机时会默认添加testOnly=true 属性，这会导致某些机型没法直接安装调试 ----> gradle.properties  中添加android.injected.testOnly=false
 
 ---------
+
+***********************
+
+[^1]: https://www.jianshu.com/p/728b2345bf0b  “Jetpack AAC完整解析（一）Lifecycle 完全掌握！"
+[^2]:https://www.jianshu.com/p/7ec67fe217fa  “Jetpack AAC完整解析（二）LiveData 完全掌握！”
+[^3]: https://www.jianshu.com/p/f96d2673c32e "Jetpack AAC完整解析（三）ViewModel 完全掌握！"
+[^4]: https://www.jianshu.com/p/1034acdb513a "Jetpack AAC完整解析（五）DataBinding 架构完善！"
+
