@@ -66,6 +66,11 @@ public class AudioRecordActivity extends BaseHeadActivity implements AudioRecord
     }
 
     @Override
+    public void onRecording(int count) {
+
+    }
+
+    @Override
     public void onFinishRecord(int duration, File file) {
         LogUtil.d("Audio", "duration = " + duration + ", path = " + (file == null? "null":file.getAbsolutePath()));
     }
