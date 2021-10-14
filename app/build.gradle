@@ -56,4 +56,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     //implementation 'com.android.support:multidex:1.0.3'
+
+    implementation project(':netlib')
 }
