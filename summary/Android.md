@@ -133,9 +133,9 @@ protected DecorView generateDecor(int featureId) {
 以上：
 
 	1. `activity`负责统筹
-
- 	2. 窗口 `PhoneWindow` 负责管理各个 `View`
- 	3. `DecorView` 最顶层的view，负责展示主题布局
+	
+	2. 窗口 `PhoneWindow` 负责管理各个 `View`
+	3. `DecorView` 最顶层的view，负责展示主题布局
 
 _谁负责绘制呢？_
 
@@ -706,9 +706,207 @@ Gradle 的构建过程分为三个阶段：**初始化**、**配置**、**执行
 
 
 
+---------
+# 三、adb 调试
+
 
 ---------
-# 三、踩坑记录：
+
+> [官方文档](https://developer.android.google.cn/studio/command-line/adb "Android debug bridge")
+>
+> `adb`包含在 Android SDK Platform-Tools 包中，是一种多功能命令行工具，可让您与设备进行通信。
+
+## 1. adb工作原理
+当启动一个 adb 客户端时，客户端首先会检查是否有一个 adb 服务器进程已经在运行。如果没有，它将启动服务器进程。当服务器启动时，它绑定到本地 TCP 端口 5037 并侦听从 adb 客户端发送的命令——所有 adb 客户端都使用端口 5037 与 adb 服务器进行通信。
+
+然后服务器建立与所有正在运行的设备的连接。它通过扫描 5555 到 5585（前 16 个仿真器使用的范围）范围内的奇数端口来定位仿真器。当服务器找到 adb 守护进程 (adbd) 时，它会建立到该端口的连接。请注意，每个仿真器都使用一对顺序端口——一个偶数端口用于控制台连接，一个奇数端口用于 adb 连接。例如：
+Emulator 1, console: 5554
+Emulator 1, adb: 5555
+Emulator 2, console: 5556
+Emulator 2, adb: 5557
+
+服务器与所有设备建立连接后，就可以使用 adb 命令访问这些设备。由于服务器管理与设备的连接并处理来自多个 adb 客户端的命令，因此可以从任何客户端（或脚本）控制任何设备。
+
+## 2. 在设备上启动adb调试
+> 前置准备--
+> - 手机设备系统设置中的 __Developer options__ 下启用 __USB__ 调试
+> 	在 Android 4.2 及更高版本上，默认隐藏开发人员选项，打开需要转到 **设置 > 关于手机** ，点击版本号 **7** 次，返回上一级找到开发人员选项。
+> - 手机和电脑连接到同一网络环境（WiFi），可以用电脑分享移动热点给测试机
+
+### 2.1. **通过 Wi-Fi 连接到设备（Android 11+）**
+
+1. 更新到最新版本的 **SDK Platform-Tools**；
+2. 在设备上，启用**开发人员选项**；
+3. 启用**无线调试**选项；
+4. 在询问**是否允许在此网络上进行无线调试的对话框中？**，单击 **允许**；
+5. 选择**使用配对代码配对设备**。记下设备上显示的配对代码、IP 地址和端口号；
+6. 打开 Teiminal，切换目录到 `android_sdk/platform-tools`；
+7. 运行，`adb pair ipaddr:port`；
+8. 出现提示时，输入在步骤 5 中收到的配对代码。一条消息表明您的设备已成功配对：
+	```
+	Enter pairing code: 482924
+	Successfully paired to 192.168.1.130:37099 [guid=adb-235XY]
+	```
+	
+9. （仅适用于 Linux 或 Microsoft Windows）运行. 使用**Wireless debugging**下的 IP 地址和端口 。 `adb connect ipaddr:port`
+
+### 2.2. **通过 Wi-Fi 连接到设备（Android 10 及更低版本）**
+
+1. 使用usb将设备连接到主机；
+
+2. 将目标设备设置为侦听端口 5555 上的 TCP/IP 连接；
+
+   ```
+   adb tcpip 5555
+   ```
+
+3. 查找 Android 设备的 IP 地址。例如，在 Nexus 设备上，在**设置** > **关于平板电脑**（或**关于手机**）> **状态** > **IP 地址**中找到**IP 地址**。或者，在 Wear OS 设备上，可以在**设置** > **Wi-Fi 设置** > **高级** > **IP 地址**中找到**IP 地址**；
+
+4. 通过 IP 地址连接到设备：
+
+   ```
+   adb connect device_ip_address:5555
+   ```
+
+5. 确认主机已连接到目标设备：
+
+   ```
+   $ adb devices
+   List of devices attached
+   device_ip_address:5555 device
+   ```
+   
+
+### 2.3. **重置 adb 主机:**
+
+```
+adb kill-server
+```
+
+## 3. adb 常用命令
+
+| 命令                                                         | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| adb devices                                                  | 显示系统中全部设备                                           |
+| adb devices -l                                               | 显示所有设备的详细信息 [__序列号__、__连接状态__（_offline_-设备未连接到adb或者没有响应；_device_-设备已连接到adb；_no device_-没有连接设备）、__描述__] |
+| adb shell pm list packages                                   | 列出手机装的所有app的包名                                    |
+| adb shell pm list packages -s                                | 列出系统应用的所有包名                                       |
+| adb shell pm list packages -3                                | 列出除了系统应用的第三方应用包名                             |
+| adb shell pm clear 包名                                      | 清除应用数据与缓存                                           |
+| adb shell dumpsys activity activities                        | __获取正在运行的Activity__                                   |
+| adb shell am start -n 包名/.具体activity                     | 启动应用activity                                             |
+| adb shell am force-stop 包名                                 | 强制停止应用                                                 |
+| adb shell wm size                                            | 查看屏幕分辨率                                               |
+| adb  -s 序列号 shell wm size                                 | 查看指定设备的屏幕分辨率（所有需要指定运行设备的操作都可以加上-s 序列号） |
+| adb shell /system/bin/screencap -p  路径例如/sdcard/screenshot.png | 获取手机屏幕截图保存到SDCard下的路径 /sdcard/screenshot.png  |
+| adb pull /sdcard/screenshot.png d:/screenshot.png            | 将手机屏幕保存到电脑                                         |
+| adb shell input tap 100 100                                  | __点击手机相应位置（最后两个参数代表点击屏幕的坐标位置）__   |
+| adb shell input swipe 500 1000 500 500 1000                  | __滑动手机屏幕(数字分别代办原始的X坐标，原始Y坐标，需要滑动目标X坐标，目标Y坐标，滑动时间，单位毫秒，滑动时间可不写)__ |
+| adb shell input text 123                                     | 在输入框输入相应内容(输入字符“123”)                          |
+| adb shell input keyevent 4 (返回键)                          | __adb命令模拟按键事件 KeyCode__                              |
+| adb shell input keyevent 3（home键）                         | adb命令模拟按键事件 KeyCode                                  |
+| adb shell input keyevent 24（音量加）                        | adb命令模拟按键事件 KeyCode                                  |
+| adb shell input keyevent 25（音量减）                        | adb命令模拟按键事件 KeyCode                                  |
+
+
+
+| KeyCode                         |          |
+| ------------------------------- | -------- |
+| 0 -->  "KEYCODE_UNKNOWN"        | 未知     |
+| 1 -->  "KEYCODE_MENU"           | 菜单     |
+| 2 -->  "KEYCODE_SOFT_RIGHT"     |          |
+| 3 -->  "KEYCODE_HOME"           | home键   |
+| 4 -->  "KEYCODE_BACK"           | 返回键   |
+| 5 -->  "KEYCODE_CALL"           | 拨打电话 |
+| 6 -->  "KEYCODE_ENDCALL"        | 挂断电话 |
+| 7 -->  "KEYCODE_0"              | 数字0    |
+| 8 -->  "KEYCODE_1"              | 数字1    |
+| 9 -->  "KEYCODE_2"              | 数字2    |
+| 10 -->  "KEYCODE_3"             | 数字3    |
+| 11 -->  "KEYCODE_4"             | 数字4    |
+| 12 -->  "KEYCODE_5"             | 数字5    |
+| 13 -->  "KEYCODE_6"             | 数字6    |
+| 14 -->  "KEYCODE_7"             | 数字7    |
+| 15 -->  "KEYCODE_8"             | 数字8    |
+| 16 -->  "KEYCODE_9"             | 数字9    |
+| 17 -->  "KEYCODE_STAR"          |          |
+| 18 -->  "KEYCODE_POUND"         |          |
+| 19 -->  "KEYCODE_DPAD_UP"       |          |
+| 20 -->  "KEYCODE_DPAD_DOWN"     |          |
+| 21 -->  "KEYCODE_DPAD_LEFT"     |          |
+| 22 -->  "KEYCODE_DPAD_RIGHT"    |          |
+| 23 -->  "KEYCODE_DPAD_CENTER"   |          |
+| 24 -->  "KEYCODE_VOLUME_UP"     | 音量加   |
+| 25 -->  "KEYCODE_VOLUME_DOWN"   | 音量减   |
+| 26 -->  "KEYCODE_POWER"         | 电源键   |
+| 27 -->  "KEYCODE_CAMERA"        | 相机     |
+| 28 -->  "KEYCODE_CLEAR"         |          |
+| 29 -->  "KEYCODE_A"             |          |
+| 30 -->  "KEYCODE_B"             |          |
+| 31 -->  "KEYCODE_C"             |          |
+| 32 -->  "KEYCODE_D"             |          |
+| 33 -->  "KEYCODE_E"             |          |
+| 34 -->  "KEYCODE_F"             |          |
+| 35 -->  "KEYCODE_G"             |          |
+| 36 -->  "KEYCODE_H"             |          |
+| 37 -->  "KEYCODE_I"             |          |
+| 38 -->  "KEYCODE_J"             |          |
+| 39 -->  "KEYCODE_K"             |          |
+| 40 -->  "KEYCODE_L"             |          |
+| 41 -->  "KEYCODE_M"             |          |
+| 42 -->  "KEYCODE_N"             |          |
+| 43 -->  "KEYCODE_O"             |          |
+| 44 -->  "KEYCODE_P"             |          |
+| 45 -->  "KEYCODE_Q"             |          |
+| 46 -->  "KEYCODE_R"             |          |
+| 47 -->  "KEYCODE_S"             |          |
+| 48 -->  "KEYCODE_T"             |          |
+| 49 -->  "KEYCODE_U"             |          |
+| 50 -->  "KEYCODE_V"             |          |
+| 51 -->  "KEYCODE_W"             |          |
+| 52 -->  "KEYCODE_X"             |          |
+| 53 -->  "KEYCODE_Y"             |          |
+| 54 -->  "KEYCODE_Z"             |          |
+| 55 -->  "KEYCODE_COMMA"         |          |
+| 56 -->  "KEYCODE_PERIOD"        |          |
+| 57 -->  "KEYCODE_ALT_LEFT"      |          |
+| 58 -->  "KEYCODE_ALT_RIGHT"     |          |
+| 59 -->  "KEYCODE_SHIFT_LEFT"    |          |
+| 60 -->  "KEYCODE_SHIFT_RIGHT"   |          |
+| 61 -->  "KEYCODE_TAB"           |          |
+| 62 -->  "KEYCODE_SPACE"         |          |
+| 63 -->  "KEYCODE_SYM"           |          |
+| 64 -->  "KEYCODE_EXPLORER"      |          |
+| 65 -->  "KEYCODE_ENVELOPE"      |          |
+| 66 -->  "KEYCODE_ENTER"         |          |
+| 67 -->  "KEYCODE_DEL"           |          |
+| 68 -->  "KEYCODE_GRAVE"         |          |
+| 69 -->  "KEYCODE_MINUS"         |          |
+| 70 -->  "KEYCODE_EQUALS"        |          |
+| 71 -->  "KEYCODE_LEFT_BRACKET"  | (        |
+| 72 -->  "KEYCODE_RIGHT_BRACKET" | )        |
+| 73 -->  "KEYCODE_BACKSLASH"     |          |
+| 74 -->  "KEYCODE_SEMICOLON"     |          |
+| 75 -->  "KEYCODE_APOSTROPHE"    |          |
+| 76 -->  "KEYCODE_SLASH"         |          |
+| 77 -->  "KEYCODE_AT"            | @        |
+| 78 -->  "KEYCODE_NUM"           |          |
+| 79 -->  "KEYCODE_HEADSETHOOK"   |          |
+| 80 -->  "KEYCODE_FOCUS"         |          |
+| 81 -->  "KEYCODE_PLUS"          |          |
+| 82 -->  "KEYCODE_MENU"          |          |
+| 83 -->  "KEYCODE_NOTIFICATION"  |          |
+| 84 -->  "KEYCODE_SEARCH"        |          |
+| 85 -->  "TAG_LAST_KEYCODE"      |          |
+
+
+
+
+
+
+
+---------
+# 四、踩坑记录：
 ## 1. AndroidManifest
 - activity label属性中文设置时报manifest编码不规范错误；----> 通过strings引入
 
