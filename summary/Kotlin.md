@@ -314,8 +314,8 @@ var str: String = "string"
   var b: Int? = 2 // box
   var list: List<Int> = listOf(1, 2) // box
   ```
-Kotlin 在语言层面简化了 Java 中的 int 和 Integer，但是我们对是否装箱的场景还是要有一个概念，因为这个牵涉到程序运行时的性能开销。
-因此在日常的使用中，对于 Int 这样的**基本类型，尽量用不可空变量。**
+  Kotlin 在语言层面简化了 Java 中的 int 和 Integer，但是我们对是否装箱的场景还是要有一个概念，因为这个牵涉到程序运行时的性能开销。
+  因此在日常的使用中，对于 Int 这样的**基本类型，尽量用不可空变量。**
 
 - Java 中的数组和 Kotlin 中的数组的写法也有区别：
   ```Java
@@ -479,3 +479,101 @@ activity as NewActivity?
 // 👇 activity 空或转型失败，得到一个空对象
 activity as? NewActivity?
 ```
+
+
+
+### 内置函数
+
+#### 1. let
+
+`一个作用于对象的作用域函数`（由对象主动调用）、`将针对这个对象的操作集中在作用域内`、`有返回值，且为最后一行 | return 表达式`
+
+```kotlin
+//it 替代 object，访问其公共属性和方法
+object.let {
+    it.doSomething()
+}
+//统一判空，当 object 不为空时才执行
+object?.let {
+    it.doSomething()
+    //1 或者 return 1 都行
+    return 1
+}
+```
+
+
+
+#### 2. also
+
+类似 `let` 函数👆， `返回值为传入的对象本身`
+
+```kotlin
+var result = object.also {
+    it.doSomething()
+    //最后一行不是返回值
+    1
+}
+//返回结果 result 为 object
+```
+
+
+
+
+
+#### 3. with
+
+`对象被传入`、`在作用域内直接使用对象的属性方法`、`有返回值，且为最后一行 | return 表达式`
+
+```kotlin
+with(object) {
+    doSomething()
+    //最后一行是返回值
+    1
+}
+
+val person = Person("Tom", 18)
+with(person) {
+    println("name = ${name}, age = ${age}")
+}
+```
+
+
+
+#### 4. run
+
+结合了 `let`、`with` 的特性：`由对象主动调用`、`在作用域内直接使用对象的属性方法`、`有返回值，且为最后一行 | return 表达式`
+
+```kotlin
+object.run {
+    doSomething()
+    //最后一行是返回值
+    1
+}
+
+val person = Person("Tom", 18)
+person.run {
+    println("name = ${name}, age = ${age}")
+    //最后一行是返回值
+    1
+}
+```
+
+
+
+#### 5.apply
+
+类似 `run` 函数👆，__但是__ `返回值为传入的对象本身`
+
+```kotlin
+val person = Person("Tom", 18)
+person.apply {
+    println("name = ${name}, age = ${age}")
+    //最后一行不是返回值，返回对象本身
+    1
+}
+```
+
+
+
+
+

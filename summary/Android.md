@@ -810,96 +810,98 @@ adb kill-server
 
 
 
-| KeyCode                         |          |
-| ------------------------------- | -------- |
-| 0 -->  "KEYCODE_UNKNOWN"        | 未知     |
-| 1 -->  "KEYCODE_MENU"           | 菜单     |
-| 2 -->  "KEYCODE_SOFT_RIGHT"     |          |
-| 3 -->  "KEYCODE_HOME"           | home键   |
-| 4 -->  "KEYCODE_BACK"           | 返回键   |
-| 5 -->  "KEYCODE_CALL"           | 拨打电话 |
-| 6 -->  "KEYCODE_ENDCALL"        | 挂断电话 |
-| 7 -->  "KEYCODE_0"              | 数字0    |
-| 8 -->  "KEYCODE_1"              | 数字1    |
-| 9 -->  "KEYCODE_2"              | 数字2    |
-| 10 -->  "KEYCODE_3"             | 数字3    |
-| 11 -->  "KEYCODE_4"             | 数字4    |
-| 12 -->  "KEYCODE_5"             | 数字5    |
-| 13 -->  "KEYCODE_6"             | 数字6    |
-| 14 -->  "KEYCODE_7"             | 数字7    |
-| 15 -->  "KEYCODE_8"             | 数字8    |
-| 16 -->  "KEYCODE_9"             | 数字9    |
-| 17 -->  "KEYCODE_STAR"          |          |
-| 18 -->  "KEYCODE_POUND"         |          |
-| 19 -->  "KEYCODE_DPAD_UP"       |          |
-| 20 -->  "KEYCODE_DPAD_DOWN"     |          |
-| 21 -->  "KEYCODE_DPAD_LEFT"     |          |
-| 22 -->  "KEYCODE_DPAD_RIGHT"    |          |
-| 23 -->  "KEYCODE_DPAD_CENTER"   |          |
-| 24 -->  "KEYCODE_VOLUME_UP"     | 音量加   |
-| 25 -->  "KEYCODE_VOLUME_DOWN"   | 音量减   |
-| 26 -->  "KEYCODE_POWER"         | 电源键   |
-| 27 -->  "KEYCODE_CAMERA"        | 相机     |
-| 28 -->  "KEYCODE_CLEAR"         |          |
-| 29 -->  "KEYCODE_A"             |          |
-| 30 -->  "KEYCODE_B"             |          |
-| 31 -->  "KEYCODE_C"             |          |
-| 32 -->  "KEYCODE_D"             |          |
-| 33 -->  "KEYCODE_E"             |          |
-| 34 -->  "KEYCODE_F"             |          |
-| 35 -->  "KEYCODE_G"             |          |
-| 36 -->  "KEYCODE_H"             |          |
-| 37 -->  "KEYCODE_I"             |          |
-| 38 -->  "KEYCODE_J"             |          |
-| 39 -->  "KEYCODE_K"             |          |
-| 40 -->  "KEYCODE_L"             |          |
-| 41 -->  "KEYCODE_M"             |          |
-| 42 -->  "KEYCODE_N"             |          |
-| 43 -->  "KEYCODE_O"             |          |
-| 44 -->  "KEYCODE_P"             |          |
-| 45 -->  "KEYCODE_Q"             |          |
-| 46 -->  "KEYCODE_R"             |          |
-| 47 -->  "KEYCODE_S"             |          |
-| 48 -->  "KEYCODE_T"             |          |
-| 49 -->  "KEYCODE_U"             |          |
-| 50 -->  "KEYCODE_V"             |          |
-| 51 -->  "KEYCODE_W"             |          |
-| 52 -->  "KEYCODE_X"             |          |
-| 53 -->  "KEYCODE_Y"             |          |
-| 54 -->  "KEYCODE_Z"             |          |
-| 55 -->  "KEYCODE_COMMA"         |          |
-| 56 -->  "KEYCODE_PERIOD"        |          |
-| 57 -->  "KEYCODE_ALT_LEFT"      |          |
-| 58 -->  "KEYCODE_ALT_RIGHT"     |          |
-| 59 -->  "KEYCODE_SHIFT_LEFT"    |          |
-| 60 -->  "KEYCODE_SHIFT_RIGHT"   |          |
-| 61 -->  "KEYCODE_TAB"           |          |
-| 62 -->  "KEYCODE_SPACE"         |          |
-| 63 -->  "KEYCODE_SYM"           |          |
-| 64 -->  "KEYCODE_EXPLORER"      |          |
-| 65 -->  "KEYCODE_ENVELOPE"      |          |
-| 66 -->  "KEYCODE_ENTER"         |          |
-| 67 -->  "KEYCODE_DEL"           |          |
-| 68 -->  "KEYCODE_GRAVE"         |          |
-| 69 -->  "KEYCODE_MINUS"         |          |
-| 70 -->  "KEYCODE_EQUALS"        |          |
-| 71 -->  "KEYCODE_LEFT_BRACKET"  | (        |
-| 72 -->  "KEYCODE_RIGHT_BRACKET" | )        |
-| 73 -->  "KEYCODE_BACKSLASH"     |          |
-| 74 -->  "KEYCODE_SEMICOLON"     |          |
-| 75 -->  "KEYCODE_APOSTROPHE"    |          |
-| 76 -->  "KEYCODE_SLASH"         |          |
-| 77 -->  "KEYCODE_AT"            | @        |
-| 78 -->  "KEYCODE_NUM"           |          |
-| 79 -->  "KEYCODE_HEADSETHOOK"   |          |
-| 80 -->  "KEYCODE_FOCUS"         |          |
-| 81 -->  "KEYCODE_PLUS"          |          |
-| 82 -->  "KEYCODE_MENU"          |          |
-| 83 -->  "KEYCODE_NOTIFICATION"  |          |
-| 84 -->  "KEYCODE_SEARCH"        |          |
-| 85 -->  "TAG_LAST_KEYCODE"      |          |
+| KeyCode                         |            |
+| ------------------------------- | ---------- |
+| 0 -->  "KEYCODE_UNKNOWN"        | 未知       |
+| 1 -->  "KEYCODE_MENU"           | 菜单       |
+| 2 -->  "KEYCODE_SOFT_RIGHT"     |            |
+| 3 -->  "KEYCODE_HOME"           | home键     |
+| 4 -->  "KEYCODE_BACK"           | 返回键     |
+| 5 -->  "KEYCODE_CALL"           | 拨号键     |
+| 6 -->  "KEYCODE_ENDCALL"        | 挂机键     |
+| 7 -->  "KEYCODE_0"              | 数字0      |
+| 8 -->  "KEYCODE_1"              | 数字1      |
+| 9 -->  "KEYCODE_2"              | 数字2      |
+| 10 -->  "KEYCODE_3"             | 数字3      |
+| 11 -->  "KEYCODE_4"             | 数字4      |
+| 12 -->  "KEYCODE_5"             | 数字5      |
+| 13 -->  "KEYCODE_6"             | 数字6      |
+| 14 -->  "KEYCODE_7"             | 数字7      |
+| 15 -->  "KEYCODE_8"             | 数字8      |
+| 16 -->  "KEYCODE_9"             | 数字9      |
+| 17 -->  "KEYCODE_STAR"          |            |
+| 18 -->  "KEYCODE_POUND"         |            |
+| 19 -->  "KEYCODE_DPAD_UP"       |            |
+| 20 -->  "KEYCODE_DPAD_DOWN"     |            |
+| 21 -->  "KEYCODE_DPAD_LEFT"     |            |
+| 22 -->  "KEYCODE_DPAD_RIGHT"    |            |
+| 23 -->  "KEYCODE_DPAD_CENTER"   |            |
+| 24 -->  "KEYCODE_VOLUME_UP"     | 音量加     |
+| 25 -->  "KEYCODE_VOLUME_DOWN"   | 音量减     |
+| 26 -->  "KEYCODE_POWER"         | 电源键     |
+| 27 -->  "KEYCODE_CAMERA"        | 拍照键     |
+| 80 -->  "KEYCODE_FOCUS"         | 拍照对焦键 |
+| 28 -->  "KEYCODE_CLEAR"         |            |
+| 29 -->  "KEYCODE_A"             |            |
+| 30 -->  "KEYCODE_B"             |            |
+| 31 -->  "KEYCODE_C"             |            |
+| 32 -->  "KEYCODE_D"             |            |
+| 33 -->  "KEYCODE_E"             |            |
+| 34 -->  "KEYCODE_F"             |            |
+| 35 -->  "KEYCODE_G"             |            |
+| 36 -->  "KEYCODE_H"             |            |
+| 37 -->  "KEYCODE_I"             |            |
+| 38 -->  "KEYCODE_J"             |            |
+| 39 -->  "KEYCODE_K"             |            |
+| 40 -->  "KEYCODE_L"             |            |
+| 41 -->  "KEYCODE_M"             |            |
+| 42 -->  "KEYCODE_N"             |            |
+| 43 -->  "KEYCODE_O"             |            |
+| 44 -->  "KEYCODE_P"             |            |
+| 45 -->  "KEYCODE_Q"             |            |
+| 46 -->  "KEYCODE_R"             |            |
+| 47 -->  "KEYCODE_S"             |            |
+| 48 -->  "KEYCODE_T"             |            |
+| 49 -->  "KEYCODE_U"             |            |
+| 50 -->  "KEYCODE_V"             |            |
+| 51 -->  "KEYCODE_W"             |            |
+| 52 -->  "KEYCODE_X"             |            |
+| 53 -->  "KEYCODE_Y"             |            |
+| 54 -->  "KEYCODE_Z"             |            |
+| 55 -->  "KEYCODE_COMMA"         |            |
+| 56 -->  "KEYCODE_PERIOD"        |            |
+| 57 -->  "KEYCODE_ALT_LEFT"      |            |
+| 58 -->  "KEYCODE_ALT_RIGHT"     |            |
+| 59 -->  "KEYCODE_SHIFT_LEFT"    |            |
+| 60 -->  "KEYCODE_SHIFT_RIGHT"   |            |
+| 61 -->  "KEYCODE_TAB"           |            |
+| 62 -->  "KEYCODE_SPACE"         |            |
+| 63 -->  "KEYCODE_SYM"           |            |
+| 64 -->  "KEYCODE_EXPLORER"      |            |
+| 65 -->  "KEYCODE_ENVELOPE"      |            |
+| 66 -->  "KEYCODE_ENTER"         |            |
+| 67 -->  "KEYCODE_DEL"           |            |
+| 68 -->  "KEYCODE_GRAVE"         |            |
+| 69 -->  "KEYCODE_MINUS"         |            |
+| 70 -->  "KEYCODE_EQUALS"        |            |
+| 71 -->  "KEYCODE_LEFT_BRACKET"  |            |
+| 72 -->  "KEYCODE_RIGHT_BRACKET" |            |
+| 73 -->  "KEYCODE_BACKSLASH"     |            |
+| 74 -->  "KEYCODE_SEMICOLON"     |            |
+| 75 -->  "KEYCODE_APOSTROPHE"    |            |
+| 76 -->  "KEYCODE_SLASH"         |            |
+| 77 -->  "KEYCODE_AT"            | @          |
+| 78 -->  "KEYCODE_NUM"           |            |
+| 79 -->  "KEYCODE_HEADSETHOOK"   |            |
+| 81 -->  "KEYCODE_PLUS"          |            |
+| 82 -->  "KEYCODE_MENU"          |            |
+| 83 -->  "KEYCODE_NOTIFICATION"  | 通知键     |
+| 84 -->  "KEYCODE_SEARCH"        | 搜索键     |
+| 85 -->  "TAG_LAST_KEYCODE"      |            |
 
 
+
+## 4. shell 脚本
 
 
 
