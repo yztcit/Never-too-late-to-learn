@@ -229,6 +229,12 @@ public void setView() {
 
 
 
+### 1.5 通知
+
+> [参考一](https://blog.csdn.net/qq_38436214/article/details/125446355 "notification")
+
+
+
 -------
 
 
@@ -705,10 +711,8 @@ Gradle 的构建过程分为三个阶段：**初始化**、**配置**、**执行
 
 
 
-
 ---------
 # 三、adb 调试
-
 
 ---------
 
